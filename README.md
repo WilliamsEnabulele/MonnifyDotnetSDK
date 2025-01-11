@@ -53,7 +53,7 @@ var monnifyClient = serviceProvider.GetRequiredService<IMonnifyClient>();
 ### 2. Create a Payment Request
 
 ```csharp
-var paymentRequest = new CreatePaymentRequest
+var paymentRequest = new InitiatizeTransaction
 {
     Amount = 5000.00m,
     CurrencyCode = "NGN",
@@ -64,54 +64,24 @@ var paymentRequest = new CreatePaymentRequest
     RedirectUrl = "https://your-site.com/payment-callback"
 };
 
-var response = await monnifyClient.Payments.CreatePaymentRequestAsync(paymentRequest);
+try {
+    var response = await monnifyClient.Transaction.InitiateTransaction(paymentRequest);
+    Console.WriteLine($"Payment URL: {response.ResponseBody.CheckoutUrl}");
+} catch(Exception ex) {
+    Console.WriteLine($"Error: {ex.Message}");
+}
 
-if (response.IsSuccess)
-{
-    Console.WriteLine($"Payment URL: {response.Data.PaymentUrl}");
-}
-else
-{
-    Console.WriteLine($"Error: {response.ErrorMessage}");
-}
 ```
 
 ### 3. Verify a Transaction
 
 ```csharp
-var transactionStatus = await monnifyClient.Transactions.VerifyTransactionAsync("transaction-reference");
+try{
+    var response = await monnifyClient.Transactions.GetTransactionStatus("transaction-reference");
 
-if (transactionStatus.IsSuccess)
-{
-    Console.WriteLine($"Transaction Status: {transactionStatus.Data.Status}");
-}
-else
-{
-    Console.WriteLine($"Error: {transactionStatus.ErrorMessage}");
-}
-```
-
-### 4. Reserve an Account
-
-```csharp
-var reserveAccountRequest = new ReserveAccountRequest
-{
-    AccountName = "John Doe",
-    CurrencyCode = "NGN",
-    CustomerEmail = "customer@example.com",
-    CustomerName = "John Doe",
-    AccountReference = "unique-account-ref"
-};
-
-var response = await monnifyClient.Accounts.ReserveAccountAsync(reserveAccountRequest);
-
-if (response.IsSuccess)
-{
-    Console.WriteLine($"Reserved Account: {response.Data.AccountNumber}");
-}
-else
-{
-    Console.WriteLine($"Error: {response.ErrorMessage}");
+    Console.WriteLine($"Transaction Status: {response.responseBody.paymentStatus}");    
+} catch(Exception ex) {
+    Console.WriteLine($"Error: {ex.Message}");
 }
 ```
 
