@@ -1,14 +1,28 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net8.0</TargetFramework>
+    <TargetFramework>netstandard2.0;netstandard2.1;net6.0;net7.0;net8.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
+	<PackageId>MonnifyIntegration</PackageId>
+	<Version>1.0.0</Version>
+	<Authors>Williams Enabulele</Authors>
+	<Company>BinaryBridge</Company>
+	<Description>A library for integrating with Monnify APIs for payment solutions.</Description>
+	<Summary>Seamless Monnify integration for .NET developers.</Summary>
+	<Tags>Monnify Payments Integration</Tags>
+	<RepositoryUrl>https://github.com/WilliamsEnabulele/MonnifyDotnetSDK</RepositoryUrl>
+	<ProjectUrl>https://github.com/WilliamsEnabulele/MonnifyDotnetSDK</ProjectUrl>
+	<License>MIT</License>
+	<Copyright>Copyright © 2025 Your Company</Copyright>
+	<ReleaseNotes>Initial release with core Monnify features.</ReleaseNotes>
+	<Readme>README.md</Readme>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.Extensions.Http" Version="8.0.1" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+	<None Include="README.md" Pack="true" PackagePath="docs\" />
   </ItemGroup>
 
 </Project>
