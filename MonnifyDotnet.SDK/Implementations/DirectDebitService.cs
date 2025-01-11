@@ -23,9 +23,11 @@ namespace MonnifyDotnet.SDK.Implementations
         public async Task<BaseResponse<MandateResponse>> CreateMandate(CreateMandateRequest request)
         {
             var client = await _baseService.GetAuthenticatedClientAsync();
+
             var response = await client.PostAsJsonAsync(DirectDebitUrls.CreateMandate, request);
-            response.EnsureSuccessStatusCode();
+            
             var content = await response.Content.ReadAsStringAsync();
+
             return JsonConvert.DeserializeObject<BaseResponse<MandateResponse>>(content);
         }
 
@@ -37,9 +39,11 @@ namespace MonnifyDotnet.SDK.Implementations
         public async Task<BaseResponse<DebitMandateResponse>> DebitMandate(DebitMandateRequest request)
         {
             var client = await _baseService.GetAuthenticatedClientAsync();
+
             var response = await client.PostAsJsonAsync(DirectDebitUrls.DebitMandate, request);
-            response.EnsureSuccessStatusCode();
+            
             var content = await response.Content.ReadAsStringAsync();
+
             return JsonConvert.DeserializeObject<BaseResponse<DebitMandateResponse>>(content);
         }
 
@@ -51,9 +55,11 @@ namespace MonnifyDotnet.SDK.Implementations
         public async Task<BaseResponse<DebitMandateResponse>> GetDebitStatus(string paymentReference)
         {
             var client = await _baseService.GetAuthenticatedClientAsync();
+
             var response = await client.GetAsync($"{DirectDebitUrls.GetDebitStatus}?paymentReference={paymentReference}");
-            response.EnsureSuccessStatusCode();
+            
             var content = await response.Content.ReadAsStringAsync();
+
             return JsonConvert.DeserializeObject<BaseResponse<DebitMandateResponse>>(content);
         }
 
@@ -65,9 +71,11 @@ namespace MonnifyDotnet.SDK.Implementations
         public async Task<BaseResponse<GetMandateStatusResponse>> GetMandateStatus(string mandateReferences)
         {
             var client = await _baseService.GetAuthenticatedClientAsync();
+
             var response = await client.GetAsync($"{DirectDebitUrls.GetMandateStatus}?mandateReferences={mandateReferences}");
-            response.EnsureSuccessStatusCode();
+            
             var content = await response.Content.ReadAsStringAsync();
+
             return JsonConvert.DeserializeObject<BaseResponse<GetMandateStatusResponse>>(content);
         }
 
@@ -79,25 +87,12 @@ namespace MonnifyDotnet.SDK.Implementations
         public async Task<BaseResponse<MandateResponse>> UpdateMandate(string mandateCode)
         {
             var client = await _baseService.GetAuthenticatedClientAsync();
+
             var response = await client.PostAsJsonAsync(DirectDebitUrls.UpdateMandate.Replace("{{mandateCode}}", mandateCode), new { });
-            response.EnsureSuccessStatusCode();
+            
             var content = await response.Content.ReadAsStringAsync();
+
             return JsonConvert.DeserializeObject<BaseResponse<MandateResponse>>(content);
-        }
-
-        Task<BaseResponse<DebitMandateResponse>> IDirectDebitService.GetDebitStatus(string paymentReference)
-        {
-            throw new NotImplementedException();
-        }
-
-        Task<BaseResponse<GetMandateStatusResponse>> IDirectDebitService.GetMandateStatus(string mandateReferences)
-        {
-            throw new NotImplementedException();
-        }
-
-        Task<BaseResponse<MandateResponse>> IDirectDebitService.UpdateMandate(string mandateCode)
-        {
-            throw new NotImplementedException();
         }
     }
 }

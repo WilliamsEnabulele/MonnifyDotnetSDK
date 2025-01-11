@@ -23,9 +23,11 @@ namespace MonnifyDotnet.SDK.Implementations
         public async Task<BaseResponse> ChargeCardToken(ChargeCardTokenRequest request)
         {
             var client = await _baseService.GetAuthenticatedClientAsync();
+
             var response = await client.PostAsJsonAsync(RecurringPaymentUrls.ChargeCardToken, request);
-            response.EnsureSuccessStatusCode();
+            
             var content = await response.Content.ReadAsStringAsync();
+
             return JsonConvert.DeserializeObject<BaseResponse>(content);
         }
     }

@@ -23,9 +23,11 @@ namespace MonnifyDotnet.SDK.Implementations
         public async Task<BaseResponse<SubAccountResponse>> CreateSubAccount(CreateSubAccountRequest[] requests)
         {
             var client = await _baseService.GetAuthenticatedClientAsync();
+
             var response = await client.PostAsJsonAsync(SubAccountUrls.SubAccount, requests);
-            response.EnsureSuccessStatusCode();
+            
             var content = await response.Content.ReadAsStringAsync();
+
             return JsonConvert.DeserializeObject<BaseResponse<SubAccountResponse>>(content);
         }
 
@@ -37,9 +39,11 @@ namespace MonnifyDotnet.SDK.Implementations
         public async Task<BaseResponse> DeleteSubAccount(string sunAccountCode)
         {
             var client = await _baseService.GetAuthenticatedClientAsync();
+
             var response = await client.DeleteAsync(SubAccountUrls.DeleteSubAccount.Replace("{subAccountCode}", sunAccountCode));
-            response.EnsureSuccessStatusCode();
+            
             var content = await response.Content.ReadAsStringAsync();
+
             return JsonConvert.DeserializeObject<BaseResponse>(content);
         }
 
@@ -50,9 +54,11 @@ namespace MonnifyDotnet.SDK.Implementations
         public async Task<BaseResponse<SubAccountResponse[]>> GetSubAccounts()
         {
             var client = await _baseService.GetAuthenticatedClientAsync();
+
             var response = await client.GetAsync(SubAccountUrls.SubAccount);
-            response.EnsureSuccessStatusCode();
+            
             var content = await response.Content.ReadAsStringAsync();
+
             return JsonConvert.DeserializeObject<BaseResponse<SubAccountResponse[]>>(content);
         }
 
@@ -64,9 +70,11 @@ namespace MonnifyDotnet.SDK.Implementations
         public async Task<BaseResponse<SubAccountResponse>> UpdateSubAccount(UpdateSubAccountRequest request)
         {
             var client = await _baseService.GetAuthenticatedClientAsync();
+
             var response = await client.PutAsJsonAsync(SubAccountUrls.SubAccount, request);
-            response.EnsureSuccessStatusCode();
+            
             var content = await response.Content.ReadAsStringAsync();
+
             return JsonConvert.DeserializeObject<BaseResponse<SubAccountResponse>>(content);
         }
     }

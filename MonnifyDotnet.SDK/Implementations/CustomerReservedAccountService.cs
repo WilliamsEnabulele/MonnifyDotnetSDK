@@ -24,9 +24,11 @@ namespace MonnifyDotnet.SDK.Implementations
         public async Task<BaseResponse> AddLinkedAccount(AddLinkedAccountRequest request, string accountReference)
         {
             var client = await _baseService.GetAuthenticatedClientAsync();
+
             var response = await client.PutAsJsonAsync(CustomerReservedAccountUrls.AddLinkedAccount.Replace("{accountReference}", accountReference), request);
-            response.EnsureSuccessStatusCode();
+
             var content = await response.Content.ReadAsStringAsync();
+
             return JsonConvert.DeserializeObject<BaseResponse>(content);
         }
 
@@ -38,9 +40,11 @@ namespace MonnifyDotnet.SDK.Implementations
         public async Task<BaseResponse<ReservedAccountResponse>> CreateReservedAccount(ReservedAccountRequest request)
         {
             var client = await _baseService.GetAuthenticatedClientAsync();
+
             var response = await client.PostAsJsonAsync(CustomerReservedAccountUrls.CreateReservedAccountGeneral, request);
-            response.EnsureSuccessStatusCode();
+
             var content = await response.Content.ReadAsStringAsync();
+
             return JsonConvert.DeserializeObject<BaseResponse<ReservedAccountResponse>>(content);
         }
 
@@ -53,9 +57,11 @@ namespace MonnifyDotnet.SDK.Implementations
         public async Task<BaseResponse> CreateReservedAccountInvoice(CreateReservedAccountInvoiceRequest request)
         {
             var client = await _baseService.GetAuthenticatedClientAsync();
+
             var response = await client.PostAsJsonAsync(CustomerReservedAccountUrls.CreateReservedAccountInvoice, request);
-            response.EnsureSuccessStatusCode();
+
             var content = await response.Content.ReadAsStringAsync();
+
             return JsonConvert.DeserializeObject<BaseResponse>(content);
         }
 
@@ -67,9 +73,11 @@ namespace MonnifyDotnet.SDK.Implementations
         public async Task<BaseResponse> DealloacteReserveAccount(string accountReference)
         {
             var client = await _baseService.GetAuthenticatedClientAsync();
+
             var response = await client.DeleteAsync(CustomerReservedAccountUrls.DeallocatingAReservedAccount.Replace("{accountReference}", accountReference));
-            response.EnsureSuccessStatusCode();
+
             var content = await response.Content.ReadAsStringAsync();
+
             return JsonConvert.DeserializeObject<BaseResponse>(content);
         }
 
@@ -81,9 +89,11 @@ namespace MonnifyDotnet.SDK.Implementations
         public async Task<BaseResponse<ReservedAccountResponse>> GetReservedAccountDetails(string accountReference)
         {
             var client = await _baseService.GetAuthenticatedClientAsync();
+
             var response = await client.GetAsync(CustomerReservedAccountUrls.GetReservedAccountDetails.Replace("{accountReference}", accountReference));
-            response.EnsureSuccessStatusCode();
+
             var content = await response.Content.ReadAsStringAsync();
+
             return JsonConvert.DeserializeObject<BaseResponse<ReservedAccountResponse>>(content);
         }
 
@@ -95,10 +105,13 @@ namespace MonnifyDotnet.SDK.Implementations
         public async Task<BaseResponse<ReservedAccountTransactionsResponse>> GetReservedAccountTransactions(ReservedAccountTransactionsRequest request)
         {
             var client = await _baseService.GetAuthenticatedClientAsync();
+
             var urlWithParams = $"{CustomerReservedAccountUrls.GetReservedAccountTransactions}?{Utilities.ToQueryString(request)}";
+
             var response = await client.GetAsync(urlWithParams);
-            response.EnsureSuccessStatusCode();
+
             var content = await response.Content.ReadAsStringAsync();
+
             return JsonConvert.DeserializeObject<BaseResponse<ReservedAccountTransactionsResponse>>(content);
         }
 
@@ -111,9 +124,11 @@ namespace MonnifyDotnet.SDK.Implementations
         public async Task<BaseResponse<SplitConfigForReservedAccountResponse>> SplitConfigForReservedAccount(SplitConfigForReservedAccountRequest request, string accountReference)
         {
             var client = await _baseService.GetAuthenticatedClientAsync();
+
             var response = await client.PutAsJsonAsync(CustomerReservedAccountUrls.UpdatingSplitConfigForReservedAccount.Replace("{accountReference}", accountReference), request);
-            response.EnsureSuccessStatusCode();
+
             var content = await response.Content.ReadAsStringAsync();
+
             return JsonConvert.DeserializeObject<BaseResponse<SplitConfigForReservedAccountResponse>>(content);
         }
 
@@ -127,9 +142,11 @@ namespace MonnifyDotnet.SDK.Implementations
         public async Task<BaseResponse<AllowedPaymentSourcesResponse>> UpdateAllowedPaymentSource(AllowedPaymentSourceRequest request, string accountReference)
         {
             var client = await _baseService.GetAuthenticatedClientAsync();
+
             var response = await client.PutAsJsonAsync(CustomerReservedAccountUrls.AllowedPaymentSource.Replace("{accountReference}", accountReference), request);
-            response.EnsureSuccessStatusCode();
+
             var content = await response.Content.ReadAsStringAsync();
+
             return JsonConvert.DeserializeObject<BaseResponse<AllowedPaymentSourcesResponse>>(content);
         }
 
@@ -142,9 +159,11 @@ namespace MonnifyDotnet.SDK.Implementations
         public async Task<BaseResponse> UpdateBVNForReserveAccount(UpdateBVNForReservedAccountRequest request, string accountReference)
         {
             var client = await _baseService.GetAuthenticatedClientAsync();
+
             var response = await client.PutAsJsonAsync(CustomerReservedAccountUrls.UpdateBVNForAReserveAccount.Replace("{accountReference}", accountReference), request);
-            response.EnsureSuccessStatusCode();
+
             var content = await response.Content.ReadAsStringAsync();
+
             return JsonConvert.DeserializeObject<BaseResponse>(content);
         }
 
@@ -158,9 +177,11 @@ namespace MonnifyDotnet.SDK.Implementations
         public async Task<BaseResponse<UpdateKYCInfoResponse>> UpdateKYCInfo(UpdateKYCInfoRequest request, string accountReference)
         {
             var client = await _baseService.GetAuthenticatedClientAsync();
+
             var response = await client.PutAsJsonAsync(CustomerReservedAccountUrls.UpdateKYCInfo.Replace("{accountReference}", accountReference), request);
-            response.EnsureSuccessStatusCode();
+
             var content = await response.Content.ReadAsStringAsync();
+
             return JsonConvert.DeserializeObject<BaseResponse<UpdateKYCInfoResponse>>(content);
         }
     }

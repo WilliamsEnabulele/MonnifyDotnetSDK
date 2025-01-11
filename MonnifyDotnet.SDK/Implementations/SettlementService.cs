@@ -22,9 +22,11 @@ namespace MonnifyDotnet.SDK.Implementations
         public async Task<BaseResponse<SettlementInformationForTransactionResponse>> GetSettlementInformationForTransaction(string transactionReference)
         {
             var client = await _baseService.GetAuthenticatedClientAsync();
+
             var response = await client.GetAsync($"{SettlementUrls.GetSettlementsInformation}?transactionReference={transactionReference}");
-            response.EnsureSuccessStatusCode();
+            
             var content = await response.Content.ReadAsStringAsync();
+
             return JsonConvert.DeserializeObject<BaseResponse<SettlementInformationForTransactionResponse>>(content);
         }
 
@@ -36,10 +38,13 @@ namespace MonnifyDotnet.SDK.Implementations
         public async Task<BaseResponse<SettlementResponse>> GetTransactionsBySettlementReference(SettlementFilterRequest request)
         {
             var client = await _baseService.GetAuthenticatedClientAsync();
+
             var urlWithParams = $"{SettlementUrls.GetTransactionsBySettlementReference}?{Utilities.ToQueryString(request)}";
+
             var response = await client.GetAsync(urlWithParams);
-            response.EnsureSuccessStatusCode();
+            
             var content = await response.Content.ReadAsStringAsync();
+
             return JsonConvert.DeserializeObject<BaseResponse<SettlementResponse>>(content);
         }
     }

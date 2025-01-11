@@ -3,11 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.11.35219.272
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MonnifyDotnet.SDK", "MonnifyDotnet.SDK\MonnifyDotnet.SDK.csproj", "{42C67069-BEFF-4AF3-8778-920FBE77D673}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MonnifyDotnet.SDK", "MonnifyDotnet.SDK\MonnifyDotnet.SDK.csproj", "{42C67069-BEFF-4AF3-8778-920FBE77D673}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MonnifyDotnet.ExampleApp", "MonnifyDotnet.ExampleApp\MonnifyDotnet.ExampleApp.csproj", "{3EA2E0A1-6931-4A44-B1FD-5679808BFA4E}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MonnifyDotnet.Tests", "MonnifyDotnet.Tests\MonnifyDotnet.Tests.csproj", "{054D1032-E335-4134-91DF-2326A356F139}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MonnifyDotnet.ExampleApp", "MonnifyDotnet.ExampleApp\MonnifyDotnet.ExampleApp.csproj", "{3EA2E0A1-6931-4A44-B1FD-5679808BFA4E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -23,10 +21,6 @@ Global
 		{3EA2E0A1-6931-4A44-B1FD-5679808BFA4E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3EA2E0A1-6931-4A44-B1FD-5679808BFA4E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3EA2E0A1-6931-4A44-B1FD-5679808BFA4E}.Release|Any CPU.Build.0 = Release|Any CPU
-		{054D1032-E335-4134-91DF-2326A356F139}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{054D1032-E335-4134-91DF-2326A356F139}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{054D1032-E335-4134-91DF-2326A356F139}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{054D1032-E335-4134-91DF-2326A356F139}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

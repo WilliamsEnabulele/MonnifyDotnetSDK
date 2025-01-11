@@ -3,7 +3,6 @@ using MonnifyDotnet.SDK.Models;
 using MonnifyDotnet.SDK.Shared;
 using Newtonsoft.Json;
 using System.Net.Http.Json;
-using TransactionStatus = MonnifyDotnet.SDK.Models.TransactionStatus;
 
 namespace MonnifyDotnet.SDK.Implementations
 {
@@ -27,8 +26,6 @@ namespace MonnifyDotnet.SDK.Implementations
 
             var response = await client.PostAsJsonAsync(TransactionUrls.Authorize3DS, request);
 
-            response.EnsureSuccessStatusCode();
-
             var content = await response.Content.ReadAsStringAsync();
 
             return JsonConvert.DeserializeObject<BaseResponse<Authorize3DSCardResponse>>(content);
@@ -45,8 +42,6 @@ namespace MonnifyDotnet.SDK.Implementations
 
             var response = await client.PostAsJsonAsync(TransactionUrls.AuthorizeOTP, request);
 
-            response.EnsureSuccessStatusCode();
-
             var content = await response.Content.ReadAsStringAsync();
 
             return JsonConvert.DeserializeObject<BaseResponse<AuthorizeOTPResponse>>(content);
@@ -60,9 +55,11 @@ namespace MonnifyDotnet.SDK.Implementations
         public async Task<BaseResponse<ChargeCardResponse>> ChargeCard(ChargeCard request)
         {
             var client = await _baseService.GetAuthenticatedClientAsync();
+
             var response = await client.PostAsJsonAsync(TransactionUrls.ChargeCard, request);
-            response.EnsureSuccessStatusCode();
+
             var content = await response.Content.ReadAsStringAsync();
+
             return JsonConvert.DeserializeObject<BaseResponse<ChargeCardResponse>>(content);
         }
 
@@ -75,10 +72,13 @@ namespace MonnifyDotnet.SDK.Implementations
         public async Task<BaseResponse<GetAllTransactionsResponse>> GetAllTransactions(GetAllTransactions request)
         {
             var client = await _baseService.GetAuthenticatedClientAsync();
+
             var urlWithParams = $"{TransactionUrls.GetAllTransactions}?{Utilities.ToQueryString(request)}";
+
             var response = await client.GetAsync(urlWithParams);
-            response.EnsureSuccessStatusCode();
+
             var content = await response.Content.ReadAsStringAsync();
+
             return JsonConvert.DeserializeObject<BaseResponse<GetAllTransactionsResponse>>(content);
         }
 
@@ -87,13 +87,16 @@ namespace MonnifyDotnet.SDK.Implementations
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
-        public async Task<BaseResponse<TransactionStatusResponse>> GetTransactionStatus(TransactionStatus request)
+        public async Task<BaseResponse<TransactionStatusResponse>> GetTransactionStatus(string transactionReference)
         {
             var client = await _baseService.GetAuthenticatedClientAsync();
-            var urlWithParams = $"{TransactionUrls.GetTransactionStatus}/{request.TransactionReference}";
+
+            var urlWithParams = $"{TransactionUrls.GetTransactionStatus}/{transactionReference}";
+
             var response = await client.GetAsync(urlWithParams);
-            response.EnsureSuccessStatusCode();
+
             var content = await response.Content.ReadAsStringAsync();
+
             return JsonConvert.DeserializeObject<BaseResponse<TransactionStatusResponse>>(content);
         }
 
@@ -106,10 +109,13 @@ namespace MonnifyDotnet.SDK.Implementations
         public async Task<BaseResponse<TransactionStatusResponse>> GetTransactionStatusByReference(TransactionStatusByReference request)
         {
             var client = await _baseService.GetAuthenticatedClientAsync();
+
             var urlWithParams = $"{TransactionUrls.GetStatusByReference}?{Utilities.ToQueryString(request)}";
+
             var response = await client.GetAsync(urlWithParams);
-            response.EnsureSuccessStatusCode();
+
             var content = await response.Content.ReadAsStringAsync();
+
             return JsonConvert.DeserializeObject<BaseResponse<TransactionStatusResponse>>(content);
         }
 
@@ -123,8 +129,6 @@ namespace MonnifyDotnet.SDK.Implementations
             var client = await _baseService.GetAuthenticatedClientAsync();
 
             var response = await client.PostAsJsonAsync(TransactionUrls.InitializeTransaction, request);
-
-            response.EnsureSuccessStatusCode();
 
             var content = await response.Content.ReadAsStringAsync();
 
@@ -142,8 +146,6 @@ namespace MonnifyDotnet.SDK.Implementations
 
             var response = await client.PostAsJsonAsync(TransactionUrls.PayWithBankTransafer, request);
 
-            response.EnsureSuccessStatusCode();
-
             var content = await response.Content.ReadAsStringAsync();
 
             return JsonConvert.DeserializeObject<BaseResponse<PayWithBankTransferResponse>>(content);
@@ -159,8 +161,6 @@ namespace MonnifyDotnet.SDK.Implementations
             var client = await _baseService.GetAuthenticatedClientAsync();
 
             var response = await client.PostAsJsonAsync(TransactionUrls.PayWithUSSD, request);
-
-            response.EnsureSuccessStatusCode();
 
             var content = await response.Content.ReadAsStringAsync();
 

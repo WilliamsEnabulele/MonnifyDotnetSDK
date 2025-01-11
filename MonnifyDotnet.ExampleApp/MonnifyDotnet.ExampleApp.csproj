@@ -11,4 +11,8 @@
     <ProjectReference Include="..\MonnifyDotnet.SDK\MonnifyDotnet.SDK.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Transaction\" />
+  </ItemGroup>
+
 </Project>

@@ -24,9 +24,11 @@ namespace MonnifyDotnet.SDK.Implementations
         public async Task<BaseResponse<RefundsResponse>> GetAllRefunds(int page, int size)
         {
             var client = await _baseService.GetAuthenticatedClientAsync();
+
             var response = await client.GetAsync($"{RefundUrls.GetAllRefunds}?page={page}&size{size}");
-            response.EnsureSuccessStatusCode();
+          
             var content = await response.Content.ReadAsStringAsync();
+
             return JsonConvert.DeserializeObject<BaseResponse<RefundsResponse>>(content);
         }
 
@@ -38,9 +40,11 @@ namespace MonnifyDotnet.SDK.Implementations
         public async Task<BaseResponse<RefundResponse>> GetRefundStatus(string refundReference)
         {
             var client = await _baseService.GetAuthenticatedClientAsync();
+
             var response = await client.GetAsync(RefundUrls.GetRefundStatus.Replace("refundReference", refundReference));
-            response.EnsureSuccessStatusCode();
+          
             var content = await response.Content.ReadAsStringAsync();
+
             return JsonConvert.DeserializeObject<BaseResponse<RefundResponse>>(content);
         }
 
@@ -52,9 +56,11 @@ namespace MonnifyDotnet.SDK.Implementations
         public async Task<BaseResponse<RefundResponse>> InitiateRefund(InitiateRefundRequest refundRequest)
         {
             var client = await _baseService.GetAuthenticatedClientAsync();
+
             var response = await client.PostAsJsonAsync(RefundUrls.InitiateRefund, refundRequest);
-            response.EnsureSuccessStatusCode();
+          
             var content = await response.Content.ReadAsStringAsync();
+
             return JsonConvert.DeserializeObject<BaseResponse<RefundResponse>>(content);
         }
     }

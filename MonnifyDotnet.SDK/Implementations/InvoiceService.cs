@@ -23,9 +23,11 @@ namespace MonnifyDotnet.SDK.Implementations
         public async Task<BaseResponse<AttachReserveAccountInvoiceResponse>> AttachReserveAccountInvoice(AttachReserveAccountInvoiceRequest request)
         {
             var client = await _baseService.GetAuthenticatedClientAsync();
+
             var response = await client.PostAsJsonAsync(InvoicesUrls.Invoice, request);
-            response.EnsureSuccessStatusCode();
+            
             var content = await response.Content.ReadAsStringAsync();
+
             return JsonConvert.DeserializeObject<BaseResponse<AttachReserveAccountInvoiceResponse>>(content);
         }
 
@@ -37,9 +39,11 @@ namespace MonnifyDotnet.SDK.Implementations
         public async Task<BaseResponse<CancelAnInvoiceResponse>> CancelAnInvoice(string invoiceReference)
         {
             var client = await _baseService.GetAuthenticatedClientAsync();
+
             var response = await client.DeleteAsync(InvoicesUrls.CancelAnInvoice.Replace("{invoiceReference}", invoiceReference));
-            response.EnsureSuccessStatusCode();
+            
             var content = await response.Content.ReadAsStringAsync();
+
             return JsonConvert.DeserializeObject<BaseResponse<CancelAnInvoiceResponse>>(content);
         }
 
@@ -51,9 +55,11 @@ namespace MonnifyDotnet.SDK.Implementations
         public async Task<BaseResponse<InvoiceResponse>> CreateInvoice(CreateInvoiceRequest request)
         {
             var client = await _baseService.GetAuthenticatedClientAsync();
+
             var response = await client.PostAsJsonAsync(InvoicesUrls.Invoice, request);
-            response.EnsureSuccessStatusCode();
+            
             var content = await response.Content.ReadAsStringAsync();
+
             return JsonConvert.DeserializeObject<BaseResponse<InvoiceResponse>>(content);
         }
 
@@ -64,9 +70,11 @@ namespace MonnifyDotnet.SDK.Implementations
         public async Task<BaseResponse<GetAllInvoicesResponse>> GetAllInvoices()
         {
             var client = await _baseService.GetAuthenticatedClientAsync();
+
             var response = await client.GetAsync(InvoicesUrls.GetAllInvoices);
-            response.EnsureSuccessStatusCode();
+            
             var content = await response.Content.ReadAsStringAsync();
+
             return JsonConvert.DeserializeObject<BaseResponse<GetAllInvoicesResponse>>(content);
         }
 
@@ -78,9 +86,11 @@ namespace MonnifyDotnet.SDK.Implementations
         public async Task<BaseResponse<InvoiceResponse>> ViewInvoiceDetails(string invoiceReference)
         {
             var client = await _baseService.GetAuthenticatedClientAsync();
+
             var response = await client.GetAsync(InvoicesUrls.ViewInvoiceDetails.Replace("{invoiceReference}", invoiceReference));
-            response.EnsureSuccessStatusCode();
+            
             var content = await response.Content.ReadAsStringAsync();
+
             return JsonConvert.DeserializeObject<BaseResponse<InvoiceResponse>>(content);
         }
     }

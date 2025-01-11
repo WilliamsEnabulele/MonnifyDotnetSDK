@@ -407,17 +407,6 @@ namespace MonnifyDotnet.SDK.Models
         public string? MerchantCode { get; set; }
     }
 
-    public class TransactionStatus
-    {
-        [JsonProperty("transactionReference")]
-        public string? TransactionReference { get; set; }
-
-        public TransactionStatus(string transactionReference)
-        {
-            TransactionReference = transactionReference ?? throw new ArgumentNullException(nameof(transactionReference));
-        }
-    }
-
     public class TransactionStatusResponse
     {
         [JsonProperty("transactionReference")]

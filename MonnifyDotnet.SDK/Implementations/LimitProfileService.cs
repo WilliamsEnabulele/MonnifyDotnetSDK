@@ -23,9 +23,11 @@ namespace MonnifyDotnet.SDK.Implementations
         public async Task<BaseResponse<LimitProfileResponse>> CreateLimitProfile(LimitProfileRequest request)
         {
             var client = await _baseService.GetAuthenticatedClientAsync();
+
             var response = await client.PostAsJsonAsync(LimitProfileUrls.profile, request);
-            response.EnsureSuccessStatusCode();
+            
             var content = await response.Content.ReadAsStringAsync();
+
             return JsonConvert.DeserializeObject<BaseResponse<LimitProfileResponse>>(content);
         }
 
@@ -36,9 +38,11 @@ namespace MonnifyDotnet.SDK.Implementations
         public async Task<BaseResponse<GetLimitProfilesResponse>> GetLimitProfiles()
         {
             var client = await _baseService.GetAuthenticatedClientAsync();
+
             var response = await client.GetAsync(LimitProfileUrls.profile);
-            response.EnsureSuccessStatusCode();
+            
             var content = await response.Content.ReadAsStringAsync();
+
             return JsonConvert.DeserializeObject<BaseResponse<GetLimitProfilesResponse>>(content);
         }
 
@@ -51,9 +55,11 @@ namespace MonnifyDotnet.SDK.Implementations
         public async Task<BaseResponse<ReserveAccountWithLimitResponse>> ReserveAccountWithLimit(ReserveAccountWithLimit request)
         {
             var client = await _baseService.GetAuthenticatedClientAsync();
+
             var response = await client.PostAsJsonAsync(LimitProfileUrls.ReserveAccountWithLimit, request);
-            response.EnsureSuccessStatusCode();
+            
             var content = await response.Content.ReadAsStringAsync();
+
             return JsonConvert.DeserializeObject<BaseResponse<ReserveAccountWithLimitResponse>>(content);
         }
 
@@ -66,9 +72,11 @@ namespace MonnifyDotnet.SDK.Implementations
         public async Task<BaseResponse<LimitProfileResponse>> UpdateLimitProfile(LimitProfileRequest request, string limitProfileCode)
         {
             var client = await _baseService.GetAuthenticatedClientAsync();
+
             var response = await client.PutAsJsonAsync($"{LimitProfileUrls.profile}/{limitProfileCode}", request);
-            response.EnsureSuccessStatusCode();
+            
             var content = await response.Content.ReadAsStringAsync();
+
             return JsonConvert.DeserializeObject<BaseResponse<LimitProfileResponse>>(content);
         }
 
@@ -80,9 +88,11 @@ namespace MonnifyDotnet.SDK.Implementations
         public async Task<BaseResponse<ReserveAccountWithLimitResponse>> UpdateReserveAccountLimit(UpdateReserveAccountLimitRequest request)
         {
             var client = await _baseService.GetAuthenticatedClientAsync();
+
             var response = await client.PutAsJsonAsync(LimitProfileUrls.ReserveAccountWithLimit, request);
-            response.EnsureSuccessStatusCode();
+            
             var content = await response.Content.ReadAsStringAsync();
+
             return JsonConvert.DeserializeObject<BaseResponse<ReserveAccountWithLimitResponse>>(content);
         }
     }

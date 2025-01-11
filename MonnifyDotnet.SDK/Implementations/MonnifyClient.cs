@@ -10,11 +10,28 @@ namespace MonnifyDotnet.SDK.Implementations
         private readonly BaseService _baseService;
 
         public MonnifyClient(MonnifyOptions options)
+       : this(options, new HttpClient())
+        {
+        }
+
+        public MonnifyClient(MonnifyOptions options, HttpClient client)
         {
             _options = options;
-            _client = new HttpClient();
-            var authService = new AuthService(_client, _options);
+            ValidateOptions(_options);
+
+            _client = client;
+            var authService = new AuthService(_options);
             _baseService = new BaseService(_client, authService, _options);
+        }
+
+        private void ValidateOptions(MonnifyOptions options)
+        {
+            if (string.IsNullOrWhiteSpace(options.ApiKey))
+                throw new ArgumentException("ApiKey is required", nameof(options.ApiKey));
+            if (string.IsNullOrWhiteSpace(options.ApiSecret))
+                throw new ArgumentException("SecretKey is required", nameof(options.ApiSecret));
+            if (string.IsNullOrWhiteSpace(options.BaseUrl))
+                throw new ArgumentException("BaseUrl is required", nameof(options.BaseUrl));
         }
 
         public ITransactionService Transaction => new TransactionService(_baseService);

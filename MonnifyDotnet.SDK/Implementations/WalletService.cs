@@ -23,9 +23,11 @@ namespace MonnifyDotnet.SDK.Implementations
         public async Task<BaseResponse<CreateWalletResponse>> CreateWallet(CreateWalletRequest request)
         {
             var client = await _baseService.GetAuthenticatedClientAsync();
+
             var response = await client.PostAsJsonAsync(WalletUrls.Create, request);
-            response.EnsureSuccessStatusCode();
+            
             var content = await response.Content.ReadAsStringAsync();
+
             return JsonConvert.DeserializeObject<BaseResponse<CreateWalletResponse>>(content);
         }
 
@@ -37,9 +39,11 @@ namespace MonnifyDotnet.SDK.Implementations
         public async Task<BaseResponse<WalletBalanceResponse>> GetWalletBalance(string accountNumber)
         {
             var client = await _baseService.GetAuthenticatedClientAsync();
+
             var response = await client.GetAsync($"{WalletUrls.Balance}?accountNumber={accountNumber}");
-            response.EnsureSuccessStatusCode();
+            
             var content = await response.Content.ReadAsStringAsync();
+
             return JsonConvert.DeserializeObject<BaseResponse<WalletBalanceResponse>>(content);
         }
 
@@ -51,10 +55,13 @@ namespace MonnifyDotnet.SDK.Implementations
         public async Task<BaseResponse<Wallet>> GetWallets(GetWalletsFilterRequest request)
         {
             var client = await _baseService.GetAuthenticatedClientAsync();
+
             var urlWithParams = $"{WalletUrls.Wallet}?{Utilities.ToQueryString(request)}";
+
             var response = await client.GetAsync(urlWithParams);
-            response.EnsureSuccessStatusCode();
+            
             var content = await response.Content.ReadAsStringAsync();
+
             return JsonConvert.DeserializeObject<BaseResponse<Wallet>>(content);
         }
 
@@ -66,9 +73,11 @@ namespace MonnifyDotnet.SDK.Implementations
         public async Task<BaseResponse<WalletTransactionsResponse>> GetWalletTransactions(string accountNumber)
         {
             var client = await _baseService.GetAuthenticatedClientAsync();
+
             var response = await client.GetAsync($"{WalletUrls.Transactions}?accountNumber={accountNumber}");
-            response.EnsureSuccessStatusCode();
+            
             var content = await response.Content.ReadAsStringAsync();
+
             return JsonConvert.DeserializeObject<BaseResponse<WalletTransactionsResponse>>(content);
         }
     }

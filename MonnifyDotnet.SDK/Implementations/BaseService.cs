@@ -12,17 +12,21 @@ namespace MonnifyDotnet.SDK.Implementations
 
         public BaseService(HttpClient client, IAuthService authService, MonnifyOptions options)
         {
-            _client = new HttpClient();
+            _client = client;
             _options = options;
             _authService = authService;
         }
 
         public async Task<HttpClient> GetAuthenticatedClientAsync()
         {
-            var accessToken = await _authService.GetAccessTokenAsync();
+            if (_client.BaseAddress is null)
+            {
+                var accessToken = await _authService.GetAccessTokenAsync();
 
-            _client.BaseAddress = new Uri(_options.BaseUrl);
-            _client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", accessToken);
+                _client.BaseAddress = new Uri(_options.BaseUrl);
+
+                _client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", accessToken);
+            }
 
             return _client;
         }

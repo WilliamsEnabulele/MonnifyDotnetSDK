@@ -18,7 +18,7 @@ namespace MonnifyDotnet.SDK.Interfaces
 
         Task<BaseResponse<GetAllTransactionsResponse>> GetAllTransactions(GetAllTransactions request);
 
-        Task<BaseResponse<TransactionStatusResponse>> GetTransactionStatus(TransactionStatus request);
+        Task<BaseResponse<TransactionStatusResponse>> GetTransactionStatus(string transactionReference);
 
         Task<BaseResponse<TransactionStatusResponse>> GetTransactionStatusByReference(TransactionStatusByReference request);
     }

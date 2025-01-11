@@ -1,0 +1,32 @@
+name: Build and Publish NuGet Package
+
+on:
+  push:
+    tags:
+      - 'v*' # Matches tags starting with 'v', like v1.0.0, v2.1.0, etc.
+  workflow_dispatch: # Allows manual triggers
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v3
+      with:
+        dotnet-version: 6.0 # Change to the .NET version you're using
+
+    - name: Restore dependencies
+      run: dotnet restore ./MonnifyDotnet.SDK/MonnifyDotnet.SDK.csproj
+
+    - name: Build SDK Project
+      run: dotnet build ./MonnifyDotnet.SDK/MonnifyDotnet.SDK.csproj --configuration Release --no-restore
+
+    - name: Pack NuGet Package
+      run: dotnet pack ./MonnifyDotnet.SDK/MonnifyDotnet.SDK.csproj --configuration Release --no-build --output ./output
+
+    - name: Publish to NuGet
+      run: dotnet nuget push "./MonnifyDotnet.SDK/output/*.nupkg" -k ${{ secrets.NUGET_API_KEY }} -s https://api.nuget.org/v3/index.json
