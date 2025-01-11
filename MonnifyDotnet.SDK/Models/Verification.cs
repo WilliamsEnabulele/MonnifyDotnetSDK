@@ -109,4 +109,5 @@ namespace MonnifyDotnet.SDK.Models
         [JsonProperty("mobileNumber")]
         public string? MobileNumber { get; set; }
     }
+
 }
