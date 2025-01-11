@@ -6,9 +6,14 @@ using System.Net.Http.Json;
 
 namespace MonnifyDotnet.SDK.Implementations
 {
-    public class InvoiceService(BaseService baseService) : IInvoiceService
+    public class InvoiceService : IInvoiceService
     {
-        private readonly BaseService _baseService = baseService;
+        private readonly BaseService _baseService;
+
+        public InvoiceService(BaseService baseService)
+        {
+            _baseService = baseService;
+        }
 
         /// <summary>
         /// This endpoint attaches a Reserved Account to an Invoice.

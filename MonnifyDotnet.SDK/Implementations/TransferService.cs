@@ -6,9 +6,14 @@ using System.Net.Http.Json;
 
 namespace MonnifyDotnet.SDK.Implementations
 {
-    public class TransferService(BaseService baseService) : ITransferService
+    public class TransferService : ITransferService
     {
-        private readonly BaseService _baseService = baseService;
+        private readonly BaseService _baseService;
+
+        public TransferService(BaseService baseService)
+        {
+            _baseService = baseService;
+        }
 
         public async Task<BaseResponse<TransferBulkResponse>> AuthorizeBulkTransfers(AuthorizeSingleTransferRequest[] requests)
         {

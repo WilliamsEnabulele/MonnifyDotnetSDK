@@ -7,9 +7,14 @@ using TransactionStatus = MonnifyDotnet.SDK.Models.TransactionStatus;
 
 namespace MonnifyDotnet.SDK.Implementations
 {
-    public class TransactionService(BaseService baseService) : ITransactionService
+    public class TransactionService : ITransactionService
     {
-        private readonly BaseService _baseService = baseService;
+        private readonly BaseService _baseService;
+
+        public TransactionService(BaseService baseService)
+        {
+            _baseService = baseService;
+        }
 
         /// <summary>
         /// This endpoint authorizes charge on a card that uses 3DS Secure Authentication.

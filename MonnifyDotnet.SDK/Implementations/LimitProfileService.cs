@@ -6,9 +6,14 @@ using System.Net.Http.Json;
 
 namespace MonnifyDotnet.SDK.Implementations
 {
-    public class LimitProfileService(BaseService baseService) : ILimitProfileService
+    public class LimitProfileService : ILimitProfileService
     {
-        private readonly BaseService _baseService = baseService;
+        private readonly BaseService _baseService;
+
+        public LimitProfileService(BaseService baseService)
+        {
+            _baseService = baseService;
+        }
 
         /// <summary>
         /// This endpoint creates limit profiles on a customer's account.

@@ -6,12 +6,18 @@ using System.Text;
 
 namespace MonnifyDotnet.SDK.Implementations
 {
-    public class AuthService(HttpClient client, MonnifyOptions options) : IAuthService
+    public class AuthService : IAuthService
     {
-        private readonly HttpClient _client = client;
-        private readonly MonnifyOptions _options = options;
+        private readonly HttpClient _client;
+        private readonly MonnifyOptions _options;
         private string? _accessToken;
         private DateTime _tokenExpiry;
+
+        public AuthService(HttpClient client, MonnifyOptions options)
+        {
+            _client = client;
+            _options = options;
+        }
 
         public async Task<string> GetAccessTokenAsync()
         {
@@ -31,15 +37,15 @@ namespace MonnifyDotnet.SDK.Implementations
             response.EnsureSuccessStatusCode();
 
             var content = await response.Content.ReadAsStringAsync();
-            var authResponse = JsonConvert.DeserializeObject<AuthResponse>(content);
+            var authResponse = JsonConvert.DeserializeObject<BaseResponse<AuthResponse>>(content);
 
-            if (authResponse == null || string.IsNullOrEmpty(authResponse.AccessToken))
+            if (authResponse == null || string.IsNullOrEmpty(authResponse.ResponseBody.AccessToken))
             {
                 throw new InvalidOperationException("Failed to authenticate with Monnify.");
             }
 
-            _accessToken = authResponse.AccessToken;
-            _tokenExpiry = DateTime.UtcNow.AddSeconds(authResponse.ExpiresIn - 60);
+            _accessToken = authResponse.ResponseBody.AccessToken;
+            _tokenExpiry = DateTime.UtcNow.AddSeconds(authResponse.ResponseBody.ExpiresIn - 60);
 
             return _accessToken;
         }
@@ -47,7 +53,9 @@ namespace MonnifyDotnet.SDK.Implementations
 
     public class AuthResponse
     {
+        [JsonProperty("accessToken")]
         public string AccessToken { get; set; } = string.Empty;
+        [JsonProperty("expiresIn")]
         public int ExpiresIn { get; set; }
     }
 }

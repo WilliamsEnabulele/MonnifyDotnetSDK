@@ -7,4 +7,8 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\MonnifyDotnet.SDK\MonnifyDotnet.SDK.csproj" />
+  </ItemGroup>
+
 </Project>

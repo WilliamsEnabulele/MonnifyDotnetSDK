@@ -6,9 +6,14 @@ using System.Net.Http.Json;
 
 namespace MonnifyDotnet.SDK.Implementations
 {
-    public class RefundService(BaseService baseService) : IRefundService
+    public class RefundService : IRefundService
     {
-        private readonly BaseService _baseService = baseService;
+        private readonly BaseService _baseService;
+
+        public RefundService(BaseService baseService)
+        {
+            _baseService = baseService;
+        }
 
         /// <summary>
         /// This endpoint returns the list of all refunds available on your integration.

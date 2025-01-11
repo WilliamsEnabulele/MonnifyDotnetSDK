@@ -5,9 +5,14 @@ using Newtonsoft.Json;
 
 namespace MonnifyDotnet.SDK.Implementations
 {
-    public class OtherService(BaseService baseService) : IOtherService
+    public class OtherService : IOtherService
     {
-        private readonly BaseService _baseService = baseService;
+        private readonly BaseService _baseService;
+
+        public OtherService(BaseService baseService)
+        {
+            _baseService = baseService;
+        }
 
         public async Task<BaseResponse<BankResponse[]>> GetBanks()
         {

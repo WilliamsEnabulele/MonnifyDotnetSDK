@@ -6,9 +6,14 @@ using System.Net.Http.Json;
 
 namespace MonnifyDotnet.SDK.Implementations
 {
-    public class CustomerReservedAccountService(BaseService baseService) : ICustomerReservedAccountService
+    public class CustomerReservedAccountService : ICustomerReservedAccountService
     {
-        private readonly BaseService _baseService = baseService;
+        private readonly BaseService _baseService;
+
+        public CustomerReservedAccountService(BaseService baseService)
+        {
+            _baseService = baseService;
+        }
 
         /// <summary>
         /// This endpoint links accounts with another partner bank to an existing customer.

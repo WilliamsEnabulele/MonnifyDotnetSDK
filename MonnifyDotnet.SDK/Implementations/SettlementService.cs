@@ -5,9 +5,14 @@ using Newtonsoft.Json;
 
 namespace MonnifyDotnet.SDK.Implementations
 {
-    public class SettlementService(BaseService baseService) : ISettlementService
+    public class SettlementService : ISettlementService
     {
-        private readonly BaseService _baseService = baseService;
+        private readonly BaseService _baseService;
+
+        public SettlementService(BaseService baseService)
+        {
+            _baseService = baseService;
+        }
 
         /// <summary>
         /// This endpoint returns settlement information on transactions made to your settlement account.

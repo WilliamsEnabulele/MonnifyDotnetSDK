@@ -29,7 +29,7 @@ namespace MonnifyDotnet.SDK.Models
         public string? RedirectUrl { get; set; }
 
         [JsonProperty("paymentMethods")]
-        public string[] PaymentMethods { get; set; }
+        public string[]? PaymentMethods { get; set; }
 
         [JsonProperty("incomeSplitConfig")]
         public IncomeSplitConfig? IncomeSplitConfig { get; set; }
@@ -42,15 +42,13 @@ namespace MonnifyDotnet.SDK.Models
             string customerEmail,
             string paymentReference,
             string currencyCode,
-            string contractCode,
-            string[] paymentMethods)
+            string contractCode)
         {
             Amount = amount;
             CustomerEmail = customerEmail ?? throw new ArgumentNullException(nameof(customerEmail));
             PaymentReference = paymentReference ?? throw new ArgumentNullException(nameof(paymentReference));
             CurrencyCode = currencyCode ?? throw new ArgumentNullException(nameof(currencyCode));
             ContractCode = contractCode ?? throw new ArgumentNullException(nameof(contractCode));
-            PaymentMethods = paymentMethods ?? throw new ArgumentNullException(nameof(paymentMethods));
         }
     }
 
@@ -69,7 +67,7 @@ namespace MonnifyDotnet.SDK.Models
         public string? ApiKey { get; set; }
 
         [JsonProperty("enabledPaymentMethod")]
-        public string[] EnabledPaymentMethod { get; set; } = [];
+        public string[]? EnabledPaymentMethod { get; set; }
 
         [JsonProperty("checkoutUrl")]
         public string? CheckoutUrl { get; set; }
@@ -343,7 +341,7 @@ namespace MonnifyDotnet.SDK.Models
     public class GetAllTransactionsResponse
     {
         [JsonProperty("content")]
-        public List<Transaction> Content { get; set; } = [];
+        public Transaction[]? Content { get; set; }
     }
 
     public class Transaction
@@ -391,7 +389,7 @@ namespace MonnifyDotnet.SDK.Models
         public bool Completed { get; set; }
 
         [JsonProperty("paymentMethodList")]
-        public string[] PaymentMethodList { get; set; } = [];
+        public string[]? PaymentMethodList { get; set; }
 
         [JsonProperty("collectionChannel")]
         public string? CollectionChannel { get; set; }
@@ -413,6 +411,11 @@ namespace MonnifyDotnet.SDK.Models
     {
         [JsonProperty("transactionReference")]
         public string? TransactionReference { get; set; }
+
+        public TransactionStatus(string transactionReference)
+        {
+            TransactionReference = transactionReference ?? throw new ArgumentNullException(nameof(transactionReference));
+        }
     }
 
     public class TransactionStatusResponse

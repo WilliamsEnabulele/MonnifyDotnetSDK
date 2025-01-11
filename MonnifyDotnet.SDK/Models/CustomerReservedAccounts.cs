@@ -66,7 +66,7 @@ namespace MonnifyDotnet.SDK.Models
         public string? CustomerName { get; set; }
 
         [JsonProperty("accounts")]
-        public Account[] Accounts { get; set; } = [];
+        public Account[]? Accounts { get; set; }
 
         [JsonProperty("collectionChannel")]
         public string? CollectionChannel { get; set; }
@@ -171,7 +171,7 @@ namespace MonnifyDotnet.SDK.Models
         public string? CustomerName { get; set; }
 
         [JsonProperty("accounts")]
-        public Account[] Accounts { get; set; } = [];
+        public Account[]? Accounts { get; set; }
 
         [JsonProperty("collectionChannel")]
         public string? CollectionChannel { get; set; }
@@ -217,7 +217,7 @@ namespace MonnifyDotnet.SDK.Models
         public bool GetAllAvailableBanks { get; set; }
 
         [JsonProperty("preferredBanks")]
-        public string[] PreferredBanks { get; set; } = [];
+        public string[]? PreferredBanks { get; set; }
     }
 
     public class UpdateBVNForReservedAccountRequest
@@ -248,11 +248,11 @@ namespace MonnifyDotnet.SDK.Models
     public class AllowedPaymentSources
     {
         [JsonProperty("bvns")]
-        public string[] BVNs { get; set; } = [];
+        public string[]? BVNs { get; set; }
         [JsonProperty("bankAccounts")]
-        public BankAccount[] BankAccounts { get; set; } = [];
+        public Account[]? BankAccounts { get; set; }
         [JsonProperty("accountNames")]
-        public string[] AccountNames { get; set; } = [];
+        public string[]? AccountNames { get; set; }
     }
 
 
@@ -276,7 +276,7 @@ namespace MonnifyDotnet.SDK.Models
     public class SplitConfigForReservedAccountRequest
     {
         [JsonProperty("configDetails")]
-        public ConfigDetail[] ConfigDetails { get; set; } = [];
+        public ConfigDetail[]? ConfigDetails { get; set; }
     }
 
     public class ConfigDetail
@@ -303,7 +303,7 @@ namespace MonnifyDotnet.SDK.Models
         [JsonProperty("feeBearer")]
         public string? FeeBearer { get; set; }
         [JsonProperty("configDetails")]
-        public ConfigDetail[] ConfigDetails { get; set; } = [];
+        public ConfigDetail[]? ConfigDetails { get; set; }
     }
 
     public class ReservedAccountTransactionsRequest
@@ -320,7 +320,7 @@ namespace MonnifyDotnet.SDK.Models
     public class ReservedAccountTransactionsResponse
     {
         [JsonProperty("content")]
-        public ReservedAccountTransaction[] Content { get; set; } = [];
+        public ReservedAccountTransaction[]? Content { get; set; }
     }
 
 

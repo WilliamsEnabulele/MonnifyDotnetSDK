@@ -248,23 +248,50 @@ namespace MonnifyDotnet.SDK.Models
 
     public class SingleTransferStatusResponse
     {
-        public float amount { get; set; }
-        public string? reference { get; set; }
-        public string? narration { get; set; }
-        public string? currency { get; set; }
-        public float fee { get; set; }
-        public bool twoFaEnabled { get; set; }
-        public string? status { get; set; }
-        public string? transactionDescription { get; set; }
-        public string? transactionReference { get; set; }
-        public DateTime createdOn { get; set; }
-        public string? sourceAccountNumber { get; set; }
-        public string? destinationAccountNumber { get; set; }
-        public string? destinationAccountName { get; set; }
-        public string? Message { get; set; }
-        public string? destinationBankName { get; set; }
-    }
+        [JsonProperty("amount")]
+        public float Amount { get; set; }
 
+        [JsonProperty("reference")]
+        public string? Reference { get; set; }
+
+        [JsonProperty("narration")]
+        public string? Narration { get; set; }
+
+        [JsonProperty("currency")]
+        public string? Currency { get; set; }
+
+        [JsonProperty("fee")]
+        public float Fee { get; set; }
+
+        [JsonProperty("two_fa_enabled")]
+        public bool TwoFaEnabled { get; set; }
+
+        [JsonProperty("status")]
+        public string? Status { get; set; }
+
+        [JsonProperty("transaction_description")]
+        public string? TransactionDescription { get; set; }
+
+        [JsonProperty("transaction_reference")]
+        public string? TransactionReference { get; set; }
+
+        [JsonProperty("created_on")]
+        public DateTime CreatedOn { get; set; }
+
+        [JsonProperty("source_account_number")]
+        public string? SourceAccountNumber { get; set; }
+
+        [JsonProperty("destination_account_number")]
+        public string? DestinationAccountNumber { get; set; }
+
+        [JsonProperty("destination_account_name")]
+        public string? DestinationAccountName { get; set; }
+
+        [JsonProperty("message")]
+        public string? Message { get; set; }
+        [JsonProperty("destinationBankName")]
+        public string? DestinationBankName { get; set; }
+    }
 
     public class BulkTransferListResponse
     {

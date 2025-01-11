@@ -6,9 +6,14 @@ using System.Net.Http.Json;
 
 namespace MonnifyDotnet.SDK.Implementations
 {
-    public class PaycodeService(BaseService baseService) : IPayCodeService
+    public class PaycodeService : IPayCodeService
     {
-        private readonly BaseService _baseService = baseService;
+        private readonly BaseService _baseService;
+
+        public PaycodeService(BaseService baseService)
+        {
+            _baseService = baseService;
+        }
 
         public async Task<BaseResponse<PaycodeResponse>> CreatePaycode(CreatePayCodeRequest request)
         {

@@ -6,9 +6,14 @@ using System.Net.Http.Json;
 
 namespace MonnifyDotnet.SDK.Implementations
 {
-    public class RecurringPaymentService(BaseService baseService) : IRecurringPaymentService
+    public class RecurringPaymentService : IRecurringPaymentService
     {
-        private readonly BaseService _baseService = baseService;
+        private readonly BaseService _baseService;
+
+        public RecurringPaymentService(BaseService baseService)
+        {
+            _baseService = baseService;
+        }
 
         /// <summary>
         /// This endpoint allows you to charge an already tokenized card with it’s card token. **NOTE**: The customer email address used in the first successful charge should be stored along with the card token.

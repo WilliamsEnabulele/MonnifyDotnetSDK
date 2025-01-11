@@ -1,13 +1,24 @@
-﻿namespace MonnifyDotnet.SDK.Models
+﻿using Newtonsoft.Json;
+
+namespace MonnifyDotnet.SDK.Models
 {
 
     public class BankResponse
     {
-        public string? name { get; set; }
-        public string? code { get; set; }
-        public object? ussdTemplate { get; set; }
-        public object? baseUssdCode { get; set; }
-        public object? transferUssdTemplate { get; set; }
+        [JsonProperty("name")]
+        public string? Name { get; set; }
+
+        [JsonProperty("code")]
+        public string? Code { get; set; }
+
+        [JsonProperty("ussd_template")]
+        public object? UssdTemplate { get; set; }
+
+        [JsonProperty("base_ussd_code")]
+        public object? BaseUssdCode { get; set; }
+
+        [JsonProperty("transfer_ussd_template")]
+        public object? TransferUssdTemplate { get; set; }
     }
 
 }

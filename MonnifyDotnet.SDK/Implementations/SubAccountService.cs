@@ -6,9 +6,14 @@ using System.Net.Http.Json;
 
 namespace MonnifyDotnet.SDK.Implementations
 {
-    public class SubAccountService(BaseService baseService) : ISubAccountService
+    public class SubAccountService : ISubAccountService
     {
-        private readonly BaseService _baseService = baseService;
+        private readonly BaseService _baseService;
+
+        public SubAccountService(BaseService baseService)
+        {
+            _baseService = baseService;
+        }
 
         /// <summary>
         /// This endpoint allows you to create a sub account to enable the spliting of payments between different accounts.
