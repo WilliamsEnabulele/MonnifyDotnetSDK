@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json;
 
-namespace MonnifyDotnetSDK.src.Models
+namespace MonnifyDotnet.SDK.Models
 {
     public class BaseResponse
     {

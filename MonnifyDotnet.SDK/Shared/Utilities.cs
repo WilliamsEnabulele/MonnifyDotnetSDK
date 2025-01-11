@@ -1,4 +1,4 @@
-﻿namespace MonnifyDotnetSDK.src.Shared
+﻿namespace MonnifyDotnet.SDK.Shared
 {
     public static class Utilities
     {

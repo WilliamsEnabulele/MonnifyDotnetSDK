@@ -1,4 +1,4 @@
-﻿namespace MonnifyDotnetSDK.src.Models
+﻿namespace MonnifyDotnet.SDK.Models
 {
 
     public class BankResponse
