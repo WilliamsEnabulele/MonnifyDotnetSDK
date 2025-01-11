@@ -198,10 +198,15 @@ namespace MonnifyDotnet.SDK.Models
     public class ResentOTPRequest
     {
         [JsonProperty("reference")]
-        public required string Reference { get; set; }
+        public string Reference { get; set; }
+
+        public ResentOTPRequest(string reference)
+        {
+            Reference = reference ?? throw new ArgumentNullException(nameof(reference));
+        }
     }
 
-    public class ResendOTPResponse
+        public class ResendOTPResponse
     {
         [JsonProperty("message")]
         public string? Message { get; set; }

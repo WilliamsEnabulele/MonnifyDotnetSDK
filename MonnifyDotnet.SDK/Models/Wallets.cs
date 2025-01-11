@@ -81,7 +81,7 @@ namespace MonnifyDotnet.SDK.Models
     public class GetWalletsResponse
     {
         [JsonProperty("content")]
-        public required Wallet[] Content { get; set; }
+        public Wallet[]? Content { get; set; }
     }
 
     public class Wallet
@@ -132,7 +132,7 @@ namespace MonnifyDotnet.SDK.Models
     public class WalletTransactionsResponse
     {
         [JsonProperty("content")]
-        public required WalletTransaction[] Content { get; set; }
+        public WalletTransaction[]? Content { get; set; }
     }
 
     public class WalletTransaction
