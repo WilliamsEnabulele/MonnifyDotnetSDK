@@ -6,19 +6,33 @@ namespace MonnifyDotnet.SDK.Models
     public class CreatePayCodeRequest
     {
         [JsonProperty("beneficiaryName")]
-        public required string BeneficiaryName { get; set; }
+        public string BeneficiaryName { get; set; }
 
         [JsonProperty("amount")]
-        public required float Amount { get; set; }
+        public float Amount { get; set; }
 
         [JsonProperty("paycodeReference")]
-        public required string PaycodeReference { get; set; }
+        public string PaycodeReference { get; set; }
 
         [JsonProperty("expiryDate")]
-        public required string ExpiryDate { get; set; }
+        public string ExpiryDate { get; set; }
 
         [JsonProperty("clientId")]
-        public required string ClientId { get; set; }
+        public string ClientId { get; set; }
+
+        public CreatePayCodeRequest(
+            string beneficiaryName,
+            float amount,
+            string paycodeReference,
+            string expiryDate,
+            string clientId)
+        {
+            BeneficiaryName = beneficiaryName ?? throw new ArgumentNullException(nameof(beneficiaryName));
+            Amount = amount;
+            PaycodeReference = paycodeReference ?? throw new ArgumentNullException(nameof(paycodeReference));
+            ExpiryDate = expiryDate ?? throw new ArgumentNullException(nameof(expiryDate));
+            ClientId = clientId ?? throw new ArgumentNullException(nameof(clientId));
+        }
     }
 
     public class FetchPaycodeFilterRequest

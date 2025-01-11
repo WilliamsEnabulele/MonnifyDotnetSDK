@@ -5,31 +5,89 @@ namespace MonnifyDotnet.SDK.Models
     public class InitiateTransferRequest
     {
         [JsonProperty("amount")]
-        public required float Amount { get; set; }
+        public float Amount { get; set; }
 
         [JsonProperty("reference")]
-        public required string Reference { get; set; }
+        public string Reference { get; set; }
 
         [JsonProperty("narration")]
-        public required string Narration { get; set; }
+        public string Narration { get; set; }
 
         [JsonProperty("destinationBankCode")]
-        public required string DestinationBankCode { get; set; }
+        public string DestinationBankCode { get; set; }
 
         [JsonProperty("destinationAccountNumber")]
-        public required string DestinationAccountNumber { get; set; }
+        public string DestinationAccountNumber { get; set; }
 
         [JsonProperty("currency")]
-        public required string Currency { get; set; }
+        public string Currency { get; set; }
 
         [JsonProperty("sourceAccountNumber")]
-        public required string SourceAccountNumber { get; set; }
+        public string SourceAccountNumber { get; set; }
+
+        public InitiateTransferRequest(
+            float amount,
+            string reference,
+            string narration,
+            string destinationBankCode,
+            string destinationAccountNumber,
+            string currency,
+            string sourceAccountNumber)
+        {
+            Amount = amount;
+            Reference = reference ?? throw new ArgumentNullException(nameof(reference));
+            Narration = narration ?? throw new ArgumentNullException(nameof(narration));
+            DestinationBankCode = destinationBankCode ?? throw new ArgumentNullException(nameof(destinationBankCode));
+            DestinationAccountNumber = destinationAccountNumber ?? throw new ArgumentNullException(nameof(destinationAccountNumber));
+            Currency = currency ?? throw new ArgumentNullException(nameof(currency));
+            SourceAccountNumber = sourceAccountNumber ?? throw new ArgumentNullException(nameof(sourceAccountNumber));
+        }
     }
 
-    public class InitiateTransferAsyncTransfer : InitiateTransferRequest
-    {
+    public class InitiateTransferAsyncTransfer { 
         [JsonProperty("async")]
         public bool Async { get; set; }
+
+        [JsonProperty("amount")]
+        public float Amount { get; set; }
+
+        [JsonProperty("reference")]
+        public string Reference { get; set; }
+
+        [JsonProperty("narration")]
+        public string Narration { get; set; }
+
+        [JsonProperty("destinationBankCode")]
+        public string DestinationBankCode { get; set; }
+
+        [JsonProperty("destinationAccountNumber")]
+        public string DestinationAccountNumber { get; set; }
+
+        [JsonProperty("currency")]
+        public string Currency { get; set; }
+
+        [JsonProperty("sourceAccountNumber")]
+        public string SourceAccountNumber { get; set; }
+
+        public InitiateTransferAsyncTransfer(
+            bool async,
+            float amount,
+            string reference,
+            string narration,
+            string destinationBankCode,
+            string destinationAccountNumber,
+            string currency,
+            string sourceAccountNumber)
+        {
+            Async = async;
+            Amount = amount;
+            Reference = reference ?? throw new ArgumentNullException(nameof(reference));
+            Narration = narration ?? throw new ArgumentNullException(nameof(narration));
+            DestinationBankCode = destinationBankCode ?? throw new ArgumentNullException(nameof(destinationBankCode));
+            DestinationAccountNumber = destinationAccountNumber ?? throw new ArgumentNullException(nameof(destinationAccountNumber));
+            Currency = currency ?? throw new ArgumentNullException(nameof(currency));
+            SourceAccountNumber = sourceAccountNumber ?? throw new ArgumentNullException(nameof(sourceAccountNumber));
+        }
     }
 
     public class TransferResponse

@@ -8,25 +8,25 @@ namespace MonnifyDotnet.SDK.Models
         public float Amount { get; set; }
 
         [JsonProperty("invoiceReference")]
-        public required string InvoiceReference { get; set; }
+        public string InvoiceReference { get; set; }  // removed 'required'
 
         [JsonProperty("description")]
-        public required string Description { get; set; }
+        public string Description { get; set; }  // removed 'required'
 
         [JsonProperty("currencyCode")]
-        public required string CurrencyCode { get; set; }
+        public string CurrencyCode { get; set; }  // removed 'required'
 
         [JsonProperty("contractCode")]
-        public required string ContractCode { get; set; }
+        public string ContractCode { get; set; }  // removed 'required'
 
         [JsonProperty("customerEmail")]
-        public required string CustomerEmail { get; set; }
+        public string CustomerEmail { get; set; }  // removed 'required'
 
         [JsonProperty("customerName")]
-        public required string CustomerName { get; set; }
+        public string CustomerName { get; set; }  // removed 'required'
 
         [JsonProperty("expiryDate")]
-        public required string ExpiryDate { get; set; }
+        public string ExpiryDate { get; set; }  // removed 'required'
 
         [JsonProperty("paymentMethods")]
         public object[]? PaymentMethods { get; set; }
@@ -36,12 +36,26 @@ namespace MonnifyDotnet.SDK.Models
 
         [JsonProperty("redirectUrl")]
         public string? RedirectUrl { get; set; }
+
+        public CreateInvoiceRequest(
+            string invoiceReference, string description, string currencyCode,
+            string contractCode, string customerEmail, string customerName,
+            string expiryDate)
+        {
+            InvoiceReference = invoiceReference ?? throw new ArgumentNullException(nameof(invoiceReference));
+            Description = description ?? throw new ArgumentNullException(nameof(description));
+            CurrencyCode = currencyCode ?? throw new ArgumentNullException(nameof(currencyCode));
+            ContractCode = contractCode ?? throw new ArgumentNullException(nameof(contractCode));
+            CustomerEmail = customerEmail ?? throw new ArgumentNullException(nameof(customerEmail));
+            CustomerName = customerName ?? throw new ArgumentNullException(nameof(customerName));
+            ExpiryDate = expiryDate ?? throw new ArgumentNullException(nameof(expiryDate));
+        }
     }
 
     public class IncomeSplitConfig
     {
         [JsonProperty("subAccountCode")]
-        public required string SubAccountCode { get; set; }
+        public string SubAccountCode { get; set; }  // removed 'required'
 
         [JsonProperty("feePercentage")]
         public float FeePercentage { get; set; }
@@ -51,6 +65,14 @@ namespace MonnifyDotnet.SDK.Models
 
         [JsonProperty("feeBearer")]
         public bool FeeBearer { get; set; }
+
+        public IncomeSplitConfig(string subAccountCode, float feePercentage, float splitAmount, bool feeBearer)
+        {
+            SubAccountCode = subAccountCode ?? throw new ArgumentNullException(nameof(subAccountCode));
+            FeePercentage = feePercentage;
+            SplitAmount = splitAmount;
+            FeeBearer = feeBearer;
+        }
     }
 
     public class InvoiceResponse
@@ -203,33 +225,56 @@ namespace MonnifyDotnet.SDK.Models
     public class AttachReserveAccountInvoiceRequest
     {
         [JsonProperty("amount")]
-        public required float Amount { get; set; }
+        public float Amount { get; set; }
 
         [JsonProperty("invoiceReference")]
-        public required string InvoiceReference { get; set; }
+        public string InvoiceReference { get; set; }
 
         [JsonProperty("accountReference")]
-        public required string AccountReference { get; set; }
+        public string AccountReference { get; set; }
 
         [JsonProperty("description")]
-        public required string Description { get; set; }
+        public string Description { get; set; }
 
         [JsonProperty("currencyCode")]
-        public required string CurrencyCode { get; set; }
+        public string CurrencyCode { get; set; }
 
         [JsonProperty("contractCode")]
-        public required string ContractCode { get; set; }
+        public string ContractCode { get; set; }
 
         [JsonProperty("customerEmail")]
-        public required string CustomerEmail { get; set; }
+        public string CustomerEmail { get; set; }
 
         [JsonProperty("customerName")]
-        public required string CustomerName { get; set; }
+        public string CustomerName { get; set; }
+
         [JsonProperty("incomeSplitConfig")]
         public IncomeSplitConfig[]? IncomeSplitConfig { get; set; }
 
         [JsonProperty("expiryDate")]
-        public required string ExpiryDate { get; set; }
+        public string ExpiryDate { get; set; }
+
+        public AttachReserveAccountInvoiceRequest(
+            float amount,
+            string invoiceReference,
+            string accountReference,
+            string description,
+            string currencyCode,
+            string contractCode,
+            string customerEmail,
+            string customerName,
+            string expiryDate)
+        {
+            Amount = amount;
+            InvoiceReference = invoiceReference ?? throw new ArgumentNullException(nameof(invoiceReference));
+            AccountReference = accountReference ?? throw new ArgumentNullException(nameof(accountReference));
+            Description = description ?? throw new ArgumentNullException(nameof(description));
+            CurrencyCode = currencyCode ?? throw new ArgumentNullException(nameof(currencyCode));
+            ContractCode = contractCode ?? throw new ArgumentNullException(nameof(contractCode));
+            CustomerEmail = customerEmail ?? throw new ArgumentNullException(nameof(customerEmail));
+            CustomerName = customerName ?? throw new ArgumentNullException(nameof(customerName));
+            ExpiryDate = expiryDate ?? throw new ArgumentNullException(nameof(expiryDate));
+        }
     }
 
     public class AttachReserveAccountInvoiceResponse

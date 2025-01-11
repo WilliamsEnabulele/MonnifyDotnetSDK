@@ -6,31 +6,45 @@ namespace MonnifyDotnet.SDK.Models
     public class InitiateRefundRequest
     {
         [JsonProperty("transactionReference")]
-        public required string TransactionReference { get; set; }
+        public string TransactionReference { get; set; }
 
         [JsonProperty("refundReference")]
-        public required string RefundReference { get; set; }
+        public string RefundReference { get; set; }
 
         [JsonProperty("refundAmount")]
-        public required float RefundAmount { get; set; }
+        public float RefundAmount { get; set; }
 
         [JsonProperty("refundReason")]
-        public required string RefundReason { get; set; }
+        public string RefundReason { get; set; }
 
         [JsonProperty("customerNote")]
-        public required string CustomerNote { get; set; }
+        public string CustomerNote { get; set; }
 
         [JsonProperty("destinationAccountNumber")]
         public string? DestinationAccountNumber { get; set; }
 
         [JsonProperty("destinationAccountBankCode")]
         public string? DestinationAccountBankCode { get; set; }
+
+        public InitiateRefundRequest(
+            string transactionReference,
+            string refundReference,
+            float refundAmount,
+            string refundReason,
+            string customerNote)
+        {
+            TransactionReference = transactionReference ?? throw new ArgumentNullException(nameof(transactionReference));
+            RefundReference = refundReference ?? throw new ArgumentNullException(nameof(refundReference));
+            RefundAmount = refundAmount;
+            RefundReason = refundReason ?? throw new ArgumentNullException(nameof(refundReason));
+            CustomerNote = customerNote ?? throw new ArgumentNullException(nameof(customerNote));
+        }
     }
 
     public class RefundsResponse
     {
         [JsonProperty("content")]
-        public required RefundResponse[] Content { get; set; }
+        public RefundResponse[]? Content { get; set; }
     }
 
     public class RefundResponse
@@ -54,7 +68,7 @@ namespace MonnifyDotnet.SDK.Models
         public string? RefundType { get; set; }
 
         [JsonProperty("refundStatus")]
-        public required string RefundStatus { get; set; }
+        public string? RefundStatus { get; set; }
 
         [JsonProperty("refundStrategy")]
         public string? RefundStrategy { get; set; }

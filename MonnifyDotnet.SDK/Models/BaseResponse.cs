@@ -8,9 +8,9 @@ namespace MonnifyDotnet.SDK.Models
         public bool RequestSuccessful { get; set; }
 
         [JsonProperty("responseMessage")]
-        public required string ResponseMessage { get; set; }
+        public string? ResponseMessage { get; set; }
         [JsonProperty("responseCode")]
-        public required string ResponseCode { get; set; }
+        public string? ResponseCode { get; set; }
     }
 
 
@@ -20,10 +20,10 @@ namespace MonnifyDotnet.SDK.Models
         public bool RequestSuccessful { get; set; }
 
         [JsonProperty("responseMessage")]
-        public required string ResponseMessage { get; set; }
+        public string? ResponseMessage { get; set; }
         [JsonProperty("responseCode")]
-        public required string ResponseCode { get; set; }
+        public string? ResponseCode { get; set; }
         [JsonProperty("responseBody")]
-        public required T ResponseBody { get; set; }
+        public T? ResponseBody { get; set; }
     }
 }

@@ -5,35 +5,53 @@ namespace MonnifyDotnet.SDK.Models
     public class InitiatizeTransaction
     {
         [JsonProperty("amount")]
-        public required float Amount { get; set; }
+        public float Amount { get; set; }
 
         [JsonProperty("customerName")]
         public string? CustomerName { get; set; }
 
         [JsonProperty("customerEmail")]
-        public required string CustomerEmail { get; set; }
+        public string CustomerEmail { get; set; }
 
         [JsonProperty("paymentReference")]
-        public required string PaymentReference { get; set; }
+        public string PaymentReference { get; set; }
 
         [JsonProperty("paymentDescription")]
         public string? PaymentDescription { get; set; }
 
         [JsonProperty("currencyCode")]
-        public required string CurrencyCode { get; set; }
+        public string CurrencyCode { get; set; }
 
         [JsonProperty("contractCode")]
-        public required string ContractCode { get; set; }
+        public string ContractCode { get; set; }
 
         [JsonProperty("redirectUrl")]
         public string? RedirectUrl { get; set; }
 
         [JsonProperty("paymentMethods")]
-        public string[] PaymentMethods { get; set; } = [];
+        public string[] PaymentMethods { get; set; }
+
         [JsonProperty("incomeSplitConfig")]
         public IncomeSplitConfig? IncomeSplitConfig { get; set; }
+
         [JsonProperty("metaData")]
         public Dictionary<string, object>? MetaData { get; set; }
+
+        public InitiatizeTransaction(
+            float amount,
+            string customerEmail,
+            string paymentReference,
+            string currencyCode,
+            string contractCode,
+            string[] paymentMethods)
+        {
+            Amount = amount;
+            CustomerEmail = customerEmail ?? throw new ArgumentNullException(nameof(customerEmail));
+            PaymentReference = paymentReference ?? throw new ArgumentNullException(nameof(paymentReference));
+            CurrencyCode = currencyCode ?? throw new ArgumentNullException(nameof(currencyCode));
+            ContractCode = contractCode ?? throw new ArgumentNullException(nameof(contractCode));
+            PaymentMethods = paymentMethods ?? throw new ArgumentNullException(nameof(paymentMethods));
+        }
     }
 
     public class InitiateTransactionResponse
@@ -60,10 +78,15 @@ namespace MonnifyDotnet.SDK.Models
     public class PayWithBankTransfer
     {
         [JsonProperty("transactionReference")]
-        public required string TransactionReference { get; set; }
+        public string TransactionReference { get; set; }
 
         [JsonProperty("bankCode")]
         public string? BankCode { get; set; }
+
+        public PayWithBankTransfer(string transactionReference)
+        {
+            TransactionReference = transactionReference ?? throw new ArgumentNullException(nameof(transactionReference));
+        }
     }
 
     public class PayWithBankTransferResponse
@@ -117,40 +140,61 @@ namespace MonnifyDotnet.SDK.Models
     public class PayWithUSSD
     {
         [JsonProperty("transactionReference")]
-        public required string TransactionReference { get; set; }
+        public string TransactionReference { get; set; }
 
         [JsonProperty("bankUssdCode")]
-        public required string BankUssdCode { get; set; }
+        public string BankUssdCode { get; set; }
+
+        public PayWithUSSD(string transactionReference, string bankUssdCode)
+        {
+            TransactionReference = transactionReference ?? throw new ArgumentNullException(nameof(transactionReference));
+            BankUssdCode = bankUssdCode ?? throw new ArgumentNullException(nameof(bankUssdCode));
+        }
     }
 
     public class ChargeCard
     {
         [JsonProperty("transactionReference")]
-        public required string TransactionReference { get; set; }
+        public string TransactionReference { get; set; }
 
         [JsonProperty("collectionChannel")]
-        public required string CollectionChannel { get; set; }
+        public string CollectionChannel { get; set; }
 
         [JsonProperty("card")]
         public Card? Card { get; set; }
+
+        public ChargeCard(string transactionReference, string collectionChannel)
+        {
+            TransactionReference = transactionReference ?? throw new ArgumentNullException(nameof(transactionReference));
+            CollectionChannel = collectionChannel ?? throw new ArgumentNullException(nameof(collectionChannel));
+        }
     }
 
     public class Card
     {
         [JsonProperty("number")]
-        public required string Number { get; set; }
+        public string Number { get; set; }
 
         [JsonProperty("expiryMonth")]
-        public required string ExpiryMonth { get; set; }
+        public string ExpiryMonth { get; set; }
 
         [JsonProperty("expiryYear")]
-        public required string ExpiryYear { get; set; }
+        public string ExpiryYear { get; set; }
 
         [JsonProperty("pin")]
-        public required string Pin { get; set; }
+        public string Pin { get; set; }
 
         [JsonProperty("cvv")]
-        public required string CVV { get; set; }
+        public string CVV { get; set; }
+
+        public Card(string number, string expiryMonth, string expiryYear, string pin, string cvv)
+        {
+            Number = number ?? throw new ArgumentNullException(nameof(number));
+            ExpiryMonth = expiryMonth ?? throw new ArgumentNullException(nameof(expiryMonth));
+            ExpiryYear = expiryYear ?? throw new ArgumentNullException(nameof(expiryYear));
+            Pin = pin ?? throw new ArgumentNullException(nameof(pin));
+            CVV = cvv ?? throw new ArgumentNullException(nameof(cvv));
+        }
     }
 
     public class ChargeCardResponse
@@ -174,16 +218,24 @@ namespace MonnifyDotnet.SDK.Models
     public class AuthorizeOTP
     {
         [JsonProperty("transactionReference")]
-        public required string TransactionReference { get; set; }
+        public string TransactionReference { get; set; }
 
         [JsonProperty("collectionChannel")]
-        public required string CollectionChannel { get; set; }
+        public string CollectionChannel { get; set; }
 
         [JsonProperty("tokenId")]
-        public required string TokenId { get; set; }
+        public string TokenId { get; set; }
 
         [JsonProperty("token")]
-        public required string Token { get; set; }
+        public string Token { get; set; }
+
+        public AuthorizeOTP(string transactionReference, string collectionChannel, string tokenId, string token)
+        {
+            TransactionReference = transactionReference ?? throw new ArgumentNullException(nameof(transactionReference));
+            CollectionChannel = collectionChannel ?? throw new ArgumentNullException(nameof(collectionChannel));
+            TokenId = tokenId ?? throw new ArgumentNullException(nameof(tokenId));
+            Token = token ?? throw new ArgumentNullException(nameof(token));
+        }
     }
 
     public class AuthorizeOTPResponse
@@ -207,13 +259,19 @@ namespace MonnifyDotnet.SDK.Models
     public class Authorize3DSCard
     {
         [JsonProperty("transactionReference")]
-        public required string TransactionReference { get; set; }
+        public string TransactionReference { get; set; }
 
         [JsonProperty("collectionChannel")]
         public string? CollectionChannel { get; set; }
 
         [JsonProperty("card")]
-        public required Card Card { get; set; }
+        public Card Card { get; set; }
+
+        public Authorize3DSCard(string transactionReference, Card card)
+        {
+            TransactionReference = transactionReference ?? throw new ArgumentNullException(nameof(transactionReference));
+            Card = card ?? throw new ArgumentNullException(nameof(card));
+        }
     }
 
     public class Authorize3DSCardResponse

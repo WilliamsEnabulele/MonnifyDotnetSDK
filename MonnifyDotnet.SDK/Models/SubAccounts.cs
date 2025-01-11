@@ -5,19 +5,33 @@ namespace MonnifyDotnet.SDK.Models
     public class CreateSubAccountRequest
     {
         [JsonProperty("currencyCode")]
-        public required string CurrencyCode { get; set; }
+        public string CurrencyCode { get; set; }
 
         [JsonProperty("bankCode")]
-        public required string BankCode { get; set; }
+        public string BankCode { get; set; }
 
         [JsonProperty("accountNumber")]
-        public required string AccountNumber { get; set; }
+        public string AccountNumber { get; set; }
 
         [JsonProperty("email")]
-        public required string Email { get; set; }
+        public string Email { get; set; }
 
         [JsonProperty("defaultSplitPercentage")]
-        public required float DefaultSplitPercentage { get; set; }
+        public float DefaultSplitPercentage { get; set; }
+
+        public CreateSubAccountRequest(
+            string currencyCode,
+            string bankCode,
+            string accountNumber,
+            string email,
+            float defaultSplitPercentage)
+        {
+            CurrencyCode = currencyCode ?? throw new ArgumentNullException(nameof(currencyCode));
+            BankCode = bankCode ?? throw new ArgumentNullException(nameof(bankCode));
+            AccountNumber = accountNumber ?? throw new ArgumentNullException(nameof(accountNumber));
+            Email = email ?? throw new ArgumentNullException(nameof(email));
+            DefaultSplitPercentage = defaultSplitPercentage;
+        }
     }
 
     public class SubAccountResponse
@@ -56,22 +70,38 @@ namespace MonnifyDotnet.SDK.Models
     public class UpdateSubAccountRequest
     {
         [JsonProperty("subAccountCode")]
-        public required string SubAccountCode { get; set; }
+        public string SubAccountCode { get; set; }
 
         [JsonProperty("currencyCode")]
-        public required string CurrencyCode { get; set; }
+        public string CurrencyCode { get; set; }
 
         [JsonProperty("bankCode")]
-        public required string BankCode { get; set; }
+        public string BankCode { get; set; }
 
         [JsonProperty("accountNumber")]
-        public required string AccountNumber { get; set; }
+        public string AccountNumber { get; set; }
 
         [JsonProperty("email")]
-        public required string Email { get; set; }
+        public string Email { get; set; }
 
         [JsonProperty("defaultSplitPercentage")]
-        public required float DefaultSplitPercentage { get; set; }
+        public float DefaultSplitPercentage { get; set; }
+
+        public UpdateSubAccountRequest(
+            string subAccountCode,
+            string currencyCode,
+            string bankCode,
+            string accountNumber,
+            string email,
+            float defaultSplitPercentage)
+        {
+            SubAccountCode = subAccountCode ?? throw new ArgumentNullException(nameof(subAccountCode));
+            CurrencyCode = currencyCode ?? throw new ArgumentNullException(nameof(currencyCode));
+            BankCode = bankCode ?? throw new ArgumentNullException(nameof(bankCode));
+            AccountNumber = accountNumber ?? throw new ArgumentNullException(nameof(accountNumber));
+            Email = email ?? throw new ArgumentNullException(nameof(email));
+            DefaultSplitPercentage = defaultSplitPercentage;
+        }
     }
 
 

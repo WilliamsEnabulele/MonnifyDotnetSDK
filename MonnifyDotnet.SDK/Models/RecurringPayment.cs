@@ -5,37 +5,57 @@ namespace MonnifyDotnet.SDK.Models
     public class ChargeCardTokenRequest
     {
         [JsonProperty("cardToken")]
-        public required string CardToken { get; set; }
+        public string CardToken { get; set; }
 
         [JsonProperty("amount")]
         public float Amount { get; set; }
 
         [JsonProperty("customerName")]
-        public required string CustomerName { get; set; }
+        public string CustomerName { get; set; }
 
         [JsonProperty("customerEmail")]
-        public required string CustomerEmail { get; set; }
+        public string CustomerEmail { get; set; }
 
         [JsonProperty("paymentReference")]
-        public required string PaymentReference { get; set; }
+        public string PaymentReference { get; set; }
 
         [JsonProperty("paymentDescription")]
-        public required string PaymentDescription { get; set; }
+        public string PaymentDescription { get; set; }
 
         [JsonProperty("currencyCode")]
-        public required string CurrencyCode { get; set; }
+        public string CurrencyCode { get; set; }
 
         [JsonProperty("contractCode")]
-        public required string ContractCode { get; set; }
+        public string ContractCode { get; set; }
 
         [JsonProperty("apiKey")]
-        public required string ApiKey { get; set; }
+        public string ApiKey { get; set; }
 
         [JsonProperty("metaData")]
         public Metadata? MetaData { get; set; }
 
         [JsonProperty("incomeSplitConfig")]
         public IncomeSplitConfig[]? IncomeSplitConfig { get; set; }
+
+        public ChargeCardTokenRequest(
+            string cardToken,
+            string customerName,
+            string customerEmail,
+            string paymentReference,
+            string paymentDescription,
+            string currencyCode,
+            string contractCode,
+            string apiKey)
+        {
+            CardToken = cardToken ?? throw new ArgumentNullException(nameof(cardToken));
+            CustomerName = customerName ?? throw new ArgumentNullException(nameof(customerName));
+            CustomerEmail = customerEmail ?? throw new ArgumentNullException(nameof(customerEmail));
+            PaymentReference = paymentReference ?? throw new ArgumentNullException(nameof(paymentReference));
+            PaymentDescription = paymentDescription ?? throw new ArgumentNullException(nameof(paymentDescription));
+            CurrencyCode = currencyCode ?? throw new ArgumentNullException(nameof(currencyCode));
+            ContractCode = contractCode ?? throw new ArgumentNullException(nameof(contractCode));
+            ApiKey = apiKey ?? throw new ArgumentNullException(nameof(apiKey));
+        }
     }
 
     public class Metadata
