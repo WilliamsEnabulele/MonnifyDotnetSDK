@@ -4,17 +4,17 @@
     <TargetFrameworks>net6.0;net7.0;net8.0</TargetFrameworks>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
-	<PackageId>MonnifyIntegration</PackageId>
+	<PackageId>MonnifyDotnetSDK</PackageId>
 	<Version>1.0.0</Version>
 	<Authors>Williams Enabulele</Authors>
-	<Company>BinaryBridge</Company>
+	<Company>Williams Enabulele</Company>
 	<Description>A library for integrating with Monnify APIs for payment solutions.</Description>
 	<Summary>Seamless Monnify integration for .NET developers.</Summary>
 	<Tags>Monnify Payments Integration</Tags>
 	<RepositoryUrl>https://github.com/WilliamsEnabulele/MonnifyDotnetSDK</RepositoryUrl>
 	<ProjectUrl>https://github.com/WilliamsEnabulele/MonnifyDotnetSDK</ProjectUrl>
 	<License>MIT</License>
-	<Copyright>Copyright © 2025 Your Company</Copyright>
+	<Copyright>Copyright © 2025 Williams Enabulele</Copyright>
 	<ReleaseNotes>Initial release with core Monnify features.</ReleaseNotes>
 	<PackageReadmeFile>README.md</PackageReadmeFile>
 	<PackageIcon>monnify-logo.png</PackageIcon>

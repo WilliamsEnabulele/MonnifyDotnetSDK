@@ -1,20 +1,32 @@
 # Monnify .NET SDK
 
-[![NuGet version](https://img.shields.io/nuget/v/MonnifyDotnetSDK)](https://www.nuget.org/packages/MonnifyDotnetSDK)
-
 Monnify .NET SDK simplifies integration with the [Monnify API](https://developers.monnify.com/api/) for developers using .NET.
 
 ## Features
 
 - Easy-to-use SDK for Monnify payments.
-- Supports card, bank transfer, reserved accounts, and split payments.
+- Supports:
+    - [x] CustomerReservedAccount
+    - [x] DirectDebit
+    - [x] Invoice
+    - [x] LimitProfile
+    - [x] Paycode
+    - [x] RecurringPayment
+    - [x] Refund
+    - [x] Settlement
+    - [x] SubAccount
+    - [x] Transaction
+    - [x] Transfer
+    - [x] Verification
+    - [x] Wallet
+    - [x] Other
 
 ## Installation
 
 Install the package via NuGet:
 
 ```bash
-dotnet add package MonnifySDK
+dotnet add package MonnifyDotnetSDK
 ```
 
 ## Configuration
@@ -31,7 +43,10 @@ Add your Monnify credentials in `appsettings.json`:
 }
 ```
 
-Register the SDK in your application:
+## Usage
+
+You can use in two ways, either register the SDK in your application:
+### 1. Via Dependency Injection
 
 ```csharp
 builder.Services.AddMonnify(options => 
@@ -40,19 +55,33 @@ builder.Services.AddMonnify(options =>
     options.SecretKey = builder.Configuration["Monnify:SecretKey"];
     options.BaseUrl = builder.Configuration["Monnify:BaseUrl"];
 });
+
+
+public class PaymentService {
+    private readonly IMonnifyClient _monnifyClient;
+
+    PaymentService(IMonnifyClient monnifyClient) {
+        _monnifyClient = monnifyClient;
+    }
+
+    public YourResponse InitiatePayment(Request request) {
+        var response = _monnifyClient.Transaction.InitiateTransaction(request);
+        ...
+    }
+}
+
 ```
 
-## Usage
-
-### 1. Initialize the Monnify Client
+### 2. or simply create a new instance of MonnifyClient
 
 ```csharp
-var monnifyClient = serviceProvider.GetRequiredService<IMonnifyClient>();
-```
+var monnifyClient = new MonnifyClient(new MonnifyOptions
+{
+    ApiKey = "{{API-KEY}}",
+    ApiSecret = "{{API-SECRET}}",
+    BaseUrl = "{{BASE-URL}}"
+})
 
-### 2. Create a Payment Request
-
-```csharp
 var paymentRequest = new InitiatizeTransaction
 {
     Amount = 5000.00m,
@@ -64,25 +93,10 @@ var paymentRequest = new InitiatizeTransaction
     RedirectUrl = "https://your-site.com/payment-callback"
 };
 
-try {
-    var response = await monnifyClient.Transaction.InitiateTransaction(paymentRequest);
-    Console.WriteLine($"Payment URL: {response.ResponseBody.CheckoutUrl}");
-} catch(Exception ex) {
-    Console.WriteLine($"Error: {ex.Message}");
-}
 
-```
+var response = await monnifyClient.Transaction.InitiateTransaction(paymentRequest);
+...
 
-### 3. Verify a Transaction
-
-```csharp
-try{
-    var response = await monnifyClient.Transactions.GetTransactionStatus("transaction-reference");
-
-    Console.WriteLine($"Transaction Status: {response.responseBody.paymentStatus}");    
-} catch(Exception ex) {
-    Console.WriteLine($"Error: {ex.Message}");
-}
 ```
 
 ## API Documentation
