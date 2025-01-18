@@ -2,7 +2,6 @@
 
 namespace MonnifyDotnet.SDK.Models
 {
-
     public class BankResponse
     {
         [JsonProperty("name")]
@@ -20,5 +19,4 @@ namespace MonnifyDotnet.SDK.Models
         [JsonProperty("transfer_ussd_template")]
         public object? TransferUssdTemplate { get; set; }
     }
-
 }

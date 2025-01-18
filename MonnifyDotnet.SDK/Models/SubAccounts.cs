@@ -103,6 +103,4 @@ namespace MonnifyDotnet.SDK.Models
             DefaultSplitPercentage = defaultSplitPercentage;
         }
     }
-
-
 }

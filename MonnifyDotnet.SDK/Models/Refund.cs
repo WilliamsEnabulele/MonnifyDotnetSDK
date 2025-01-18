@@ -2,7 +2,6 @@
 
 namespace MonnifyDotnet.SDK.Models
 {
-
     public class InitiateRefundRequest
     {
         [JsonProperty("transactionReference")]

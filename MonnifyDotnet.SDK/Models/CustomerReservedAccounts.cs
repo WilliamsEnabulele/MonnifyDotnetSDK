@@ -97,10 +97,13 @@ namespace MonnifyDotnet.SDK.Models
     {
         [JsonProperty("bankCode")]
         public string? BankCode { get; set; }
+
         [JsonProperty("bankName")]
         public string? BankName { get; set; }
+
         [JsonProperty("accountNumber")]
         public string? AccountNumber { get; set; }
+
         [JsonProperty("accountName")]
         public string? AccountName { get; set; }
     }
@@ -148,7 +151,6 @@ namespace MonnifyDotnet.SDK.Models
             CustomerEmail = customerEmail ?? throw new ArgumentNullException(nameof(customerEmail));
         }
     }
-
 
     public class GetReservedAccountResponse
     {
@@ -205,8 +207,10 @@ namespace MonnifyDotnet.SDK.Models
     {
         [JsonProperty("name")]
         public string? Name { get; set; }
+
         [JsonProperty("code")]
         public string? Code { get; set; }
+
         [JsonProperty("description")]
         public object? Description { get; set; }
     }
@@ -235,13 +239,14 @@ namespace MonnifyDotnet.SDK.Models
     {
         [JsonProperty("restrictPaymentSource")]
         public bool RestrictPaymentSource { get; set; }
+
         [JsonProperty("allowedPaymentSources")]
         public AllowedPaymentSources AllowedPaymentSources { get; set; }
 
         public AllowedPaymentSourceRequest(bool restrictPaymentSource, AllowedPaymentSources allowedPaymentSources)
         {
             RestrictPaymentSource = restrictPaymentSource;
-            AllowedPaymentSources = allowedPaymentSources ?? throw new ArgumentNullException(nameof(allowedPaymentSources));  
+            AllowedPaymentSources = allowedPaymentSources ?? throw new ArgumentNullException(nameof(allowedPaymentSources));
         }
     }
 
@@ -249,17 +254,19 @@ namespace MonnifyDotnet.SDK.Models
     {
         [JsonProperty("bvns")]
         public string[]? BVNs { get; set; }
+
         [JsonProperty("bankAccounts")]
         public Account[]? BankAccounts { get; set; }
+
         [JsonProperty("accountNames")]
         public string[]? AccountNames { get; set; }
     }
-
 
     public class AllowedPaymentSourcesResponse
     {
         [JsonProperty("restrictPaymentSource")]
         public bool RestrictPaymentSource { get; set; }
+
         [JsonProperty("allowedPaymentSources")]
         public AllowedPaymentSources? AllowedPaymentSources { get; set; }
     }
@@ -268,10 +275,10 @@ namespace MonnifyDotnet.SDK.Models
     {
         [JsonProperty("accountNumber")]
         public string? AccountNumber { get; set; }
+
         [JsonProperty("bankCode")]
         public string? BankCode { get; set; }
     }
-
 
     public class SplitConfigForReservedAccountRequest
     {
@@ -283,25 +290,31 @@ namespace MonnifyDotnet.SDK.Models
     {
         [JsonProperty("subAccountCode")]
         public string? SubAccountCode { get; set; }
+
         [JsonProperty("feePercentage")]
         public float FeePercentage { get; set; }
+
         [JsonProperty("splitPercentage")]
         public int SplitPercentage { get; set; }
+
         [JsonProperty("feeBearer")]
         public bool FeeBearer { get; set; }
+
         [JsonProperty("reservedAccountConfigCode")]
         public string? ReservedAccountConfigCode { get; set; }
     }
-
 
     public class SplitConfigForReservedAccountResponse
     {
         [JsonProperty("code")]
         public string? Code { get; set; }
+
         [JsonProperty("reservedAccountCode")]
         public string? ReservedAccountCode { get; set; }
+
         [JsonProperty("feeBearer")]
         public string? FeeBearer { get; set; }
+
         [JsonProperty("configDetails")]
         public ConfigDetail[]? ConfigDetails { get; set; }
     }
@@ -310,12 +323,13 @@ namespace MonnifyDotnet.SDK.Models
     {
         [JsonProperty("accountReference")]
         public string? AccountReference { get; set; }
+
         [JsonProperty("page")]
         public int Page { get; set; }
+
         [JsonProperty("size")]
         public int Size { get; set; }
     }
-
 
     public class ReservedAccountTransactionsResponse
     {
@@ -323,47 +337,65 @@ namespace MonnifyDotnet.SDK.Models
         public ReservedAccountTransaction[]? Content { get; set; }
     }
 
-
     public class ReservedAccountTransaction
     {
         [JsonProperty("customerDTO")]
         public Customerdto? CustomerDTO { get; set; }
+
         [JsonProperty("providerAmount")]
         public float ProviderAmount { get; set; }
+
         [JsonProperty("paymentMethod")]
         public string? PaymentMethod { get; set; }
+
         [JsonProperty("createdOn")]
         public DateTime CreatedOn { get; set; }
+
         [JsonProperty("amount")]
         public float Amount { get; set; }
+
         [JsonProperty("flagged")]
         public bool Flagged { get; set; }
+
         [JsonProperty("providerCode")]
         public string? ProviderCode { get; set; }
+
         [JsonProperty("fee")]
         public float Fee { get; set; }
+
         [JsonProperty("currencyCode")]
         public string? CurrencyCode { get; set; }
+
         [JsonProperty("completedOn")]
         public DateTime CompletedOn { get; set; }
+
         [JsonProperty("paymentDescription")]
         public string? PaymentDescription { get; set; }
+
         [JsonProperty("paymentStatus")]
         public string? PaymentStatus { get; set; }
+
         [JsonProperty("transactionReference")]
         public string? TransactionReference { get; set; }
+
         [JsonProperty("paymentReference")]
         public string? PaymentReference { get; set; }
+
         [JsonProperty("merchantCode")]
         public string? MerchantCode { get; set; }
+
         [JsonProperty("merchantName")]
         public string? MerchantName { get; set; }
+
         [JsonProperty("settleInstantly")]
         public bool SettleInstantly { get; set; }
+
         [JsonProperty("payableAmount")]
         public float PayableAmount { get; set; }
+
         [JsonProperty("amountPaid")]
         public float AmountPaid { get; set; }
+
         [JsonProperty("completed")]
         public bool Completed { get; set; }
     }
@@ -372,21 +404,25 @@ namespace MonnifyDotnet.SDK.Models
     {
         [JsonProperty("bvn")]
         public string? BVN { get; set; }
+
         [JsonProperty("nin")]
         public string? NIN { get; set; }
     }
-
 
     public class UpdateKYCInfoResponse
     {
         [JsonProperty("accountReference")]
         public string? AccountReference { get; set; }
+
         [JsonProperty("accountName")]
         public string? AccountName { get; set; }
+
         [JsonProperty("customerEmail")]
         public string? CustomerEmail { get; set; }
+
         [JsonProperty("customerName")]
         public string? CustomerName { get; set; }
+
         [JsonProperty("bvn")]
         public string? BVN { get; set; }
     }

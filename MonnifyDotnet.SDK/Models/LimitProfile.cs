@@ -2,7 +2,6 @@
 
 namespace MonnifyDotnet.SDK.Models
 {
-
     public class LimitProfileRequest
     {
         [JsonProperty("limitProfileName")]
@@ -18,15 +17,9 @@ namespace MonnifyDotnet.SDK.Models
         public float DailyTransactionValue { get; set; }
 
         public LimitProfileRequest(
-            string limitProfileName,
-            float singleTransactionValue,
-            float dailyTransactionVolume,
-            float dailyTransactionValue)
+            string limitProfileName)
         {
             LimitProfileName = limitProfileName ?? throw new ArgumentNullException(nameof(limitProfileName));
-            SingleTransactionValue = singleTransactionValue;
-            DailyTransactionVolume = dailyTransactionVolume;
-            DailyTransactionValue = dailyTransactionValue;
         }
     }
 
@@ -146,6 +139,4 @@ namespace MonnifyDotnet.SDK.Models
         [JsonProperty("limitProfileCode")]
         public string? LimitProfileCode { get; set; }
     }
-
-
 }

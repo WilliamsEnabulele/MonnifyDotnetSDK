@@ -9,10 +9,10 @@ namespace MonnifyDotnet.SDK.Models
 
         [JsonProperty("responseMessage")]
         public string? ResponseMessage { get; set; }
+
         [JsonProperty("responseCode")]
         public string? ResponseCode { get; set; }
     }
-
 
     public class BaseResponse<T>
     {
@@ -21,8 +21,10 @@ namespace MonnifyDotnet.SDK.Models
 
         [JsonProperty("responseMessage")]
         public string? ResponseMessage { get; set; }
+
         [JsonProperty("responseCode")]
         public string? ResponseCode { get; set; }
+
         [JsonProperty("responseBody")]
         public T? ResponseBody { get; set; }
     }
