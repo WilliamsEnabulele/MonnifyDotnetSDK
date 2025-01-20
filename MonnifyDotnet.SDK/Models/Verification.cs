@@ -2,7 +2,6 @@
 
 namespace MonnifyDotnet.SDK.Models
 {
-
     public class ValidateBankAccountResponse
     {
         [JsonProperty("accountNumber")]
@@ -109,5 +108,4 @@ namespace MonnifyDotnet.SDK.Models
         [JsonProperty("mobileNumber")]
         public string? MobileNumber { get; set; }
     }
-
 }

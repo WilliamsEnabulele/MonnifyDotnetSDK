@@ -14,7 +14,6 @@ namespace MonnifyDotnet.SDK.Models
         public int Size { get; set; }
     }
 
-
     public class SettlementResponse
     {
         [JsonProperty("content")]
@@ -140,5 +139,4 @@ namespace MonnifyDotnet.SDK.Models
         [JsonProperty("destinationBankCode")]
         public string? DestinationBankCode { get; set; }
     }
-
 }

@@ -44,7 +44,8 @@ namespace MonnifyDotnet.SDK.Models
         }
     }
 
-    public class InitiateTransferAsyncTransfer { 
+    public class InitiateTransferAsyncTransfer
+    {
         [JsonProperty("async")]
         public bool Async { get; set; }
 
@@ -206,7 +207,7 @@ namespace MonnifyDotnet.SDK.Models
         }
     }
 
-        public class ResendOTPResponse
+    public class ResendOTPResponse
     {
         [JsonProperty("message")]
         public string? Message { get; set; }
@@ -244,7 +245,6 @@ namespace MonnifyDotnet.SDK.Models
         [JsonProperty("ledgerBalance")]
         public float LedgerBalance { get; set; }
     }
-
 
     public class SingleTransferStatusResponse
     {
@@ -289,6 +289,7 @@ namespace MonnifyDotnet.SDK.Models
 
         [JsonProperty("message")]
         public string? Message { get; set; }
+
         [JsonProperty("destinationBankName")]
         public string? DestinationBankName { get; set; }
     }
@@ -297,6 +298,7 @@ namespace MonnifyDotnet.SDK.Models
     {
         [JsonProperty("content")]
         public TransferBulkResponse[]? Content { get; set; }
+
         [JsonProperty("pageable")]
         public Pageable? Pageable { get; set; }
 
@@ -327,11 +329,11 @@ namespace MonnifyDotnet.SDK.Models
         [JsonProperty("empty")]
         public bool Empty { get; set; }
     }
-
 
     public class SingleTransferListResponse
     {
         public SingleTransferStatusResponse[]? Content { get; set; }
+
         [JsonProperty("pageable")]
         public Pageable? Pageable { get; set; }
 
@@ -362,12 +364,12 @@ namespace MonnifyDotnet.SDK.Models
         [JsonProperty("empty")]
         public bool Empty { get; set; }
     }
-
 
     public class BulkTransferTransactionsResponse
     {
         [JsonProperty("content")]
         public SingleTransferStatusResponse[]? Content { get; set; }
+
         [JsonProperty("pageable")]
         public Pageable? Pageable { get; set; }
 

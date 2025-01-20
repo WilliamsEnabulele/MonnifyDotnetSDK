@@ -1,6 +1,4 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
-using MonnifyDotnet.SDK.Implementations;
-using MonnifyDotnet.SDK.Interfaces;
 using MonnifyDotnet.SDK.Models;
 
 namespace MonnifyDotnet.SDK.Extensions
@@ -10,12 +8,8 @@ namespace MonnifyDotnet.SDK.Extensions
         public static IServiceCollection AddMonnify(this IServiceCollection services, Action<MonnifyOptions> options)
         {
             services.Configure(options);
-            services.AddHttpClient("MonnifyClient", client =>
-            {
-                client.DefaultRequestHeaders.Add("Content-Type", "application/json");
-            });
+            services.AddHttpClient<IMonnifyClient, MonnifyClient>("MonnifyClient");
 
-            services.AddScoped<IMonnifyClient, MonnifyClient>();
             return services;
         }
     }

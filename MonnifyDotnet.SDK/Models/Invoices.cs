@@ -8,25 +8,25 @@ namespace MonnifyDotnet.SDK.Models
         public float Amount { get; set; }
 
         [JsonProperty("invoiceReference")]
-        public string InvoiceReference { get; set; }  // removed 'required'
+        public string InvoiceReference { get; set; }
 
         [JsonProperty("description")]
-        public string Description { get; set; }  // removed 'required'
+        public string Description { get; set; }
 
         [JsonProperty("currencyCode")]
-        public string CurrencyCode { get; set; }  // removed 'required'
+        public string CurrencyCode { get; set; }
 
         [JsonProperty("contractCode")]
-        public string ContractCode { get; set; }  // removed 'required'
+        public string ContractCode { get; set; }
 
         [JsonProperty("customerEmail")]
-        public string CustomerEmail { get; set; }  // removed 'required'
+        public string CustomerEmail { get; set; }
 
         [JsonProperty("customerName")]
-        public string CustomerName { get; set; }  // removed 'required'
+        public string CustomerName { get; set; }
 
         [JsonProperty("expiryDate")]
-        public string ExpiryDate { get; set; }  // removed 'required'
+        public string ExpiryDate { get; set; }
 
         [JsonProperty("paymentMethods")]
         public object[]? PaymentMethods { get; set; }
@@ -55,7 +55,7 @@ namespace MonnifyDotnet.SDK.Models
     public class IncomeSplitConfig
     {
         [JsonProperty("subAccountCode")]
-        public string SubAccountCode { get; set; }  // removed 'required'
+        public string SubAccountCode { get; set; }
 
         [JsonProperty("feePercentage")]
         public float FeePercentage { get; set; }
@@ -66,12 +66,9 @@ namespace MonnifyDotnet.SDK.Models
         [JsonProperty("feeBearer")]
         public bool FeeBearer { get; set; }
 
-        public IncomeSplitConfig(string subAccountCode, float feePercentage, float splitAmount, bool feeBearer)
+        public IncomeSplitConfig(string subAccountCode)
         {
             SubAccountCode = subAccountCode ?? throw new ArgumentNullException(nameof(subAccountCode));
-            FeePercentage = feePercentage;
-            SplitAmount = splitAmount;
-            FeeBearer = feeBearer;
         }
     }
 

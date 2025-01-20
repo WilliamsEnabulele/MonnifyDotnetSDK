@@ -517,7 +517,6 @@ namespace MonnifyDotnet.SDK.Models
 
     public class TransactionStatusByReference
     {
-
         [JsonProperty("transactionReference")]
         public string? TransactionReference { get; set; }
 
