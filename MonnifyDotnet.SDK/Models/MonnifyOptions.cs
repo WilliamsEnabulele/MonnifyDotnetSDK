@@ -7,5 +7,7 @@
         public string ApiKey { get; set; } = string.Empty;
 
         public string ApiSecret { get; set; } = string.Empty;
+
+        public string ContractCode { get; set; } = string.Empty;
     }
 }

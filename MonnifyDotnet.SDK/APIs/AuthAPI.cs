@@ -7,26 +7,19 @@ namespace MonnifyDotnet.SDK.APIs
 {
     public class AuthAPI
     {
-        private static readonly HttpClient _client = new HttpClient();
+        private static readonly HttpClient _client = new();
         private readonly MonnifyOptions _options;
-        private string? _accessToken;
-        private DateTime _tokenExpiry;
 
         public AuthAPI(MonnifyOptions options)
         {
             _options = options;
         }
 
-        public async Task<string> GetAccessTokenAsync()
+        public async Task<AuthResponse> GetAccessTokenAsync()
         {
-            if (!string.IsNullOrEmpty(_accessToken) && DateTime.UtcNow < _tokenExpiry)
-            {
-                return _accessToken;
-            }
+            _client.BaseAddress ??= new Uri(_options.BaseUrl);
 
-            _client.BaseAddress = new Uri(_options.BaseUrl);
-
-            _client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Basic", Convert.ToBase64String(Encoding.UTF8.GetBytes($"{_options.ApiKey}:{_options.ApiSecret}")));
+            _client.DefaultRequestHeaders.Authorization ??= new AuthenticationHeaderValue("Basic", Convert.ToBase64String(Encoding.UTF8.GetBytes($"{_options.ApiKey}:{_options.ApiSecret}")));
 
             var response = await _client.PostAsync("/api/v1/auth/login", null);
 
@@ -39,11 +32,7 @@ namespace MonnifyDotnet.SDK.APIs
                 throw new InvalidOperationException("Failed to authenticate with Monnify.");
             }
 
-            _accessToken = authResponse.ResponseBody.AccessToken;
-
-            _tokenExpiry = DateTime.UtcNow.AddSeconds(authResponse.ResponseBody.ExpiresIn - 60);
-
-            return _accessToken;
+            return authResponse.ResponseBody;
         }
     }
 

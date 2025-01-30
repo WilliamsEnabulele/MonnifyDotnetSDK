@@ -37,7 +37,7 @@ Add your Monnify credentials in `appsettings.json`:
 {
   "Monnify": {
     "ApiKey": "YOUR_API_KEY",
-    "SecretKey": "YOUR_SECRET_KEY",
+    "ApiSecret": "YOUR_SECRET_KEY",
     "BaseUrl": "https://sandbox.monnify.com/api/v1"
   }
 }
@@ -52,7 +52,7 @@ You can use in two ways, either register the SDK in your application:
 builder.Services.AddMonnify(options => 
 {
     options.ApiKey = builder.Configuration["Monnify:ApiKey"];
-    options.SecretKey = builder.Configuration["Monnify:SecretKey"];
+    options.ApiSecret = builder.Configuration["Monnify:ApiKey"];
     options.BaseUrl = builder.Configuration["Monnify:BaseUrl"];
 });
 

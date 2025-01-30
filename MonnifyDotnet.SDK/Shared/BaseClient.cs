@@ -11,6 +11,8 @@ namespace MonnifyDotnet.SDK.Shared
         private readonly HttpClient _client;
         private readonly MonnifyOptions _options;
         private readonly AuthAPI _authService;
+        private string _accessToken = string.Empty;
+        private DateTime _tokenExpiry;
 
         public BaseClient(HttpClient client, MonnifyOptions options)
         {
@@ -21,14 +23,18 @@ namespace MonnifyDotnet.SDK.Shared
 
         private async Task<HttpClient> GetAuthenticatedClientAsync()
         {
-            if (_client.BaseAddress is null)
+            if (!string.IsNullOrEmpty(_accessToken) && DateTime.Now < _tokenExpiry)
             {
-                var accessToken = await _authService.GetAccessTokenAsync();
-
-                _client.BaseAddress = new Uri(_options.BaseUrl);
-
-                _client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", accessToken);
+                return _client;
             }
+
+            var response = await _authService.GetAccessTokenAsync();
+            _tokenExpiry = DateTime.Now.AddSeconds(response.ExpiresIn - 10);
+            _accessToken = response.AccessToken;
+
+            _client.BaseAddress ??= new Uri(_options.BaseUrl);
+
+            _client.DefaultRequestHeaders.Authorization ??= new AuthenticationHeaderValue("Bearer", _accessToken);
 
             return _client;
         }
