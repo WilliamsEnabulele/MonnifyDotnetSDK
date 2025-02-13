@@ -35,10 +35,11 @@ Add your Monnify credentials in `appsettings.json`:
 
 ```json
 {
-  "Monnify": {
+  "MonnifyOptions": {
     "ApiKey": "YOUR_API_KEY",
     "ApiSecret": "YOUR_SECRET_KEY",
-    "BaseUrl": "https://sandbox.monnify.com/api/v1"
+    "BaseUrl": "https://sandbox.monnify.com/api/v1",
+    "ContractCode": "YOUR__CONTRACT_CODE"
   }
 }
 ```
@@ -51,9 +52,9 @@ You can use in two ways, either register the SDK in your application:
 ```csharp
 builder.Services.AddMonnify(options => 
 {
-    options.ApiKey = builder.Configuration["Monnify:ApiKey"];
-    options.ApiSecret = builder.Configuration["Monnify:ApiKey"];
-    options.BaseUrl = builder.Configuration["Monnify:BaseUrl"];
+    options.ApiKey = builder.Configuration["MonnifyOptions:ApiKey"];
+    options.ApiSecret = builder.Configuration["MonnifyOptions:ApiKey"];
+    options.BaseUrl = builder.Configuration["MonnifyOptions:BaseUrl"];
 });
 
 
@@ -77,9 +78,9 @@ public class PaymentService {
 ```csharp
 var monnifyClient = new MonnifyClient(new MonnifyOptions
 {
-    ApiKey = "{{API-KEY}}",
-    ApiSecret = "{{API-SECRET}}",
-    BaseUrl = "{{BASE-URL}}"
+    ApiKey = "{{API_KEY}}",
+    ApiSecret = "{{API_SECRET}}",
+    BaseUrl = "{{BASE_URL}}"
 })
 
 var paymentRequest = new InitiatizeTransaction
@@ -90,6 +91,7 @@ var paymentRequest = new InitiatizeTransaction
     CustomerName = "John Doe",
     PaymentReference = "unique-payment-ref",
     PaymentDescription = "Test Payment",
+    ContractCode = "1438045810",
     RedirectUrl = "https://your-site.com/payment-callback"
 };
 
