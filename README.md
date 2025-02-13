@@ -39,7 +39,7 @@ Add your Monnify credentials in `appsettings.json`:
 {
   "MonnifyOptions": {
     "ApiKey": "YOUR_API_KEY",
-    "SecretKey": "YOUR_SECRET_KEY",
+    "ApiSecret": "YOUR_SECRET_KEY",
     "BaseUrl": "https://sandbox.monnify.com/api/v1",
     "ContractCode": "YOUR_CONTRACT_CODE"
   }
